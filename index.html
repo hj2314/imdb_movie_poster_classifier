@@ -36,8 +36,10 @@
 			max-height: 300px;
 		}
 
-		img.maxHeightSpectrumGenre {
-			max-height: 150px;
+		boxPlotGenreRating {
+			-moz-user-select: none;
+			-webkit-user-select: none;
+			-ms-user-select: none;
 		}
 	</style>
 	<title>Deep Learning with IMDb Movie Ratings and Genres</title>
@@ -117,10 +119,10 @@
 
 			<!-- Histogram and horizontal genre bar charts. -->
 			<div class="col-md-6">
-				<canvas id="histogramRatingChart" />
+				<canvas id="histogramRatingChart">
 			</div>
 			<div class="col-md-6">
-				<canvas id="horizontalGenreChart" />
+				<canvas id="horizontalGenreChart">
 			</div>
 
 			<!-- Q2: How do I know these predictions are accurate? -->
@@ -294,7 +296,7 @@
 				</figure>
 			</div>
 			<div class="col-md-9">
-				<p><span class="fst-italic">1970-20210, Trending Towards Darkness:</span> We can see a trend towards
+				<p><span class="fst-italic">1970-2010, Trending Towards Darkness:</span> We can see a trend towards
 					darker movie posters some movie theorists believe this is related to the popularity of
 					action, thrillers, and sci-fi of the past decade may have led to a darker and more "masculine"
 					palette. Some film theorists speculate that 9/11 and the economic downturn have led the public to
@@ -315,7 +317,13 @@
 				<p><span class="fst-italic">1990-20210, Orange and Blue:</span> Blue and orange are a powerful
 					combination because unlike other color pairings — red and green, pink and blue — they don't conjure
 					cultural associations that are already set in stone. They sit on opposite sides of the color wheel,
-					evoking the two poles of hot and cold and explosive action. And Hollywood ad makers know it.
+					evoking the two poles of hot and cold and explosive action. And Hollywood ad makers know it. Notes:
+					Add examples Empire Strikes back maker. Generally, the oranges are used to highlight explosions,
+					bright skies and boost skin tones towards the hyper-real end whilst the contrasting blues (opposite
+					orange on the colour wheel) exaggerate stormy skies/seas and help create mood and tension.
+					https://colormetrix.com/blog/oranges-blues-prevalent-movie-industry/ Discuss Complementary colour
+					wheel.
+
 				</p>
 			</div>
 
@@ -323,19 +331,17 @@
 			<div class="col-md-12 mt-5">
 				<p class="fw-light">Color Spectrum of Movies by Genre</p>
 				<figure class="figure">
-					<img class="img-thumbnail maxHeightSpectrum" src="https://i.imgur.com/VBWQH2j.png">
+					<img class="img-thumbnail maxHeightSpectrum" src="https://i.imgur.com/JjJ096w.png">
 					<figcaption class="figure-caption text-center">Figure 9: Color Spectrum of Movies by Genre.
 					</figcaption>
 				</figure>
 			</div>
-			<div class="col-md-4">
+			<div class="col-md-6">
 				<figure class="figure">
-					<img class="img-thumbnail maxHeightSpectrumGenre" src="https://i.imgur.com/W8afoS6.png">
+					<img class="img-thumbnail maxHeightSpectrum" src="https://i.imgur.com/SCqyLcA.png">
 				</figure>
-				<figcaption class="figure-caption text-center">Figure 10: Example of movie poster in each genre.
-				</figcaption>
 			</div>
-			<div class="col-md-8">
+			<div class="col-md-6">
 				<p>
 					We can see that the Horror genre consists of about 60.1% of black pixels and that we trend towards a
 					higher use of bright colors such as red, orange, yellow, and green, as we move towards the
@@ -352,6 +358,16 @@
 					</figcaption>
 				</figure>
 			</div>
+			<div class="col-md-12">
+				<p>Trending decreasing percentage of dark cells as we move to higher rated movies. This can be
+					attributed to
+					much of these low rated movies being the Horror genre as seen in the box plot below. This gives us
+					some
+					insiration to create a
+				</p>
+
+			</div>
+
 
 		</div>
 
