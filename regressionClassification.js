@@ -296,6 +296,41 @@ let horizontalBarGenreChart = new Chart(genreCtx, {
 });
 
 
+
+// Graphs - Line Graph Average IMDb Rating per decade.
+const avgLineRatingCtx = document.getElementById("lineAvgRatingChart").getContext("2d");
+let avgLineRatingChart = new Chart(avgLineRatingCtx, {
+    type: 'line',
+    data: {
+        labels: [1880, 1890, 1900, 1910, 1920, 1930,
+            1940, 1950, 1960, 1970, 1980, 1990, 2000, 2010],
+        datasets: [
+            {
+                label: "Average IMDb Rating by Decade",
+                data: [5.90, 5.72, 6.55, 6.67, 7.17, 6.87, 6.92
+                    , 6.77, 6.71, 6.51, 6.33, 6.32, 6.35, 6.24]
+            }
+        ]
+    }, options: {
+        scales: {
+            y: {
+                title: {
+                    display: true,
+                    text: "Average IMDb Rating"
+                }
+            }
+        },
+        plugins: {
+            title: {
+                display: true,
+                text: "Average IMDb Rating by Decade (n = 39.2K)"
+            },
+        }
+    }
+}
+);
+
+
 // Graphs - Histogram of IMDb Ratings.
 const avgGenreCtx = document.getElementById("barChartGenreRatingAverage").getContext("2d");
 let avgGenreBarChart = new Chart(avgGenreCtx, {
@@ -324,7 +359,7 @@ let avgGenreBarChart = new Chart(avgGenreCtx, {
             y: {
                 title: {
                     display: true,
-                    text: "Average IMDb Rating "
+                    text: "Average IMDb Rating"
                 }
             }
         },
