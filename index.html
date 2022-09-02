@@ -155,10 +155,13 @@
 				some predictive qualities in assessing movie quality (or IMDb rating).
 				Figure 1 shows a sample of six movie poster with a predicted score of two or below. Who can forget
 				timeless classics like "3 Little Ninjas", "Bigfoot Terror", and "Age of Ice"! Figure 2 shows a sample
-				of six movie posters with a predicted rating greater than 7.9. Although there seems to be some signal
+				of six movie posters with a predicted rating greater than 7.9. There seems to be some signal
 				which indicates what constitutes a "bad" poster vs a "good" poster from this small twelve movie sample
-				size, let's see if we can explore the movie image data at a macroscopic scale in our next chapter.
+				size.
 			</p>
+			<p class="fw-bold">Can we try to make the "best" movie poster while exploring the
+				posters from a bird's eye view?</p>
+
 			<div class="col-md-6">
 				<figure class="figure">
 					<a href="https://imgur.com/5QJBj8E">
@@ -182,8 +185,8 @@
 				<span class="fst-italic">IMDb Genre model evaluation:</span> With the Genre classifier, the model was
 			</p>
 
-			<!-- Q3: How can we aggregate and compare our images across ratings, genres, and other dimensions? -->
-			<h4 class="leftYellowBorder mt-5">Q3: How can we aggregate and compare images across other dimensions?</h4>
+			<!-- Q3: How can we view the posters from a bird's eye view? -->
+			<h4 class="leftYellowBorder mt-5">Q3: How can we view the posters from a bird's eye view?</h4>
 			<div class="col-md-12">
 				<p>
 					One method to view movie posters at a macroscopic scale would be to obtain the pixel colors (a red,
@@ -326,6 +329,17 @@
 
 				</p>
 			</div>
+			<div class="col-md-6">
+				<canvas id="lineAvgRatingChart"></canvas>
+			</div>
+			<div class="col-md-6">
+				<!-- https://help.imdb.com/article/imdb/track-movies-tv/why-do-the-user-ratings-on-many-movies-and-tv-shows-seem-to-decrease-over-time/G4SK7DG5EA35B4GF?ref_=helpart_nav_13# -->
+				<p>We can see the average rating decrease by 12.9% from it's peak in the 1920's to 2010. For our poster
+					we can perhaps utilize a 1920s vibe to maximize our IMDb rating.
+				</p>
+			</div>
+
+
 
 			<!-- Color Spectrum by Movies by Genre -->
 			<div class="col-md-12 mt-5">
@@ -346,7 +360,7 @@
 					We can see that the Horror genre consists of about 60.1% of black pixels and that we trend towards a
 					higher use of bright colors such as red, orange, yellow, and green, as we move towards the
 					light hearted Animation and Family genres. Comment about color theory and perceptions of
-					brighter color is happier, maybe marketing?
+					brighter color is happier, maybe marketing? How does the Genre impact IMDb rating?
 				</p>
 			</div>
 
@@ -363,12 +377,32 @@
 				<canvas id="barChartGenreRatingAverage">
 			</div>
 			<div class="col-md-6">
-				<p>We can see that as we decreasing percentage of dark cells as we move to higher rated movies. This can
-					be attributed to much of these low rated movies being the Horror genre as seen in the box plot
-					below. This gives us some inspiration to
+				<p>Next, we can split color spectrum into by IMDb ratings into three equal buckets Low (Less than 3.3),
+					Mid (3.3-6.6), and High (Greater than 6.6). We
+					can see that as we decreasing percentage of dark cells as we move to higher rated (>6.7 IMDb
+					rating) movies. This can
+					be attributed to much of these low rated movies being the Horror and Action genres as we saw had
+					higher
+					below. This gives us some inspiration to create a Documentary looking movie poster with a 40% of
+					black pixels.
 				</p>
 			</div>
 
+			<!-- Q4: What is the best possible rated movie poster? -->
+			<h4 class="leftYellowBorder mt-5">Q4: What is the best possible rated movie poster?</h4>
+			<div class="col-md-12">
+				<p>Recapping our analysis, it's a Documentary / Animation, occupies around 40% darker colors, try to
+					adopt blue and orange color to stay cool and relevent.
+				</p>
+			</div>
+			<div class="col-md-12">
+				<p>Recapping our analysis to maximize our chances in creating highest rated IMDb poster:
+					1. Recapture the greatness of 1920s
+					1. Adopt X and y % blue and orange color.
+					2. Occupies around 40% darker colors,
+					3.
+				</p>
+			</div>
 
 
 		</div>
