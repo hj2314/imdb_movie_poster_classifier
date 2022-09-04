@@ -59,7 +59,7 @@
 				<br><small class="text-muted">Color Trends over the Last 150 Years</small>
 			</h1>
 
-			<!-- Question 1 -->
+			<!-- Can you judge a movie by its poster? -->
 			<h4 class="mt-5">Can you judge a movie by its poster?</h4>
 			<div class="row">
 				<p>Upload an image of a movie poster or click on one of the examples to see if a deep learning algorithm
@@ -101,6 +101,7 @@
 			</div>
 		</div>
 	</div>
+
 	<!-- Below the jumbotron. -->
 	<div class="container">
 		<div class="row">
@@ -114,9 +115,7 @@
 				<div class="col-md-6">
 					<h4 class="leftYellowBorder">Genres <small class="text-secondary">(Confidence)</small>
 					</h4>
-
 					<h5 id="genreConfidenceId"></h5>
-
 				</div>
 			</div>
 
@@ -156,6 +155,13 @@
 					</tbody>
 				</table>
 			</div>
+			<div class="col-md-6 mt-5">
+				<p>
+					Other*:<span class="fst-italic"> Thriller, Western, Fantasy, Mystery, Family, Romance, Sci-Fi,
+						Musical, War, Musical, History, Film-Noir, Adult, Talk-Show, Sport
+					</span>
+				</p>
+			</div>
 
 			<!-- Dataset Summary and Motivations -->
 			<h4 class="leftYellowBorder mt-5">Dataset Summary and Motivations</h4>
@@ -166,8 +172,10 @@
 						href="https:www.kaggle.com/datasets/neha1703/movie-genre-from-its-poster">
 						dataset of 39.2K movie posters</a> found on <a href="https:www.kaggle.com/">Kaggle</a>.
 					The movies date back from 1874 to 2022, IMDb ratings are on a scale of one to ten, and span
-					across 26 different genres. The histograms above represent the distribution of IMDb ratings
-					of our movies.
+					across 26 different genres. In our original dataset 73.2% of the movies had several genres (example:
+					Action|Comedy). I cleaned the data so there was only one genre associated with each movie to
+					simplify
+					the classification problem.
 				</p>
 				<p>The main motivations of this project was to explore
 					<a href="https:en.wikipedia.org/wiki/Transfer_learning">transfer learning</a> in computer vision
@@ -187,10 +195,8 @@
 				</p>
 			</div>
 
-
-
+			<!-- How accurate are these predictions -->
 			<h4 class="leftYellowBorder mt-5">How accurate are these predictions?</h4>
-			<!-- <h4 class="leftYellowBorder mt-5">Q2: How do I know these predictions are accurate?</h4> -->
 			<p>
 				<span class="fst-italic">IMDb Rating regression model evaluation:</span> With the IMDb rating
 				regression algorithm, the model was able to achieve a (Mean Absolute Error) MAE of 0.79. This
@@ -203,7 +209,6 @@
 				which indicates what constitutes a "bad" poster vs a "good" poster from this small twelve movie sample
 				size.
 			</p>
-
 			<div class="col-md-6">
 				<figure class="figure">
 					<a href="https://imgur.com/5QJBj8E">
@@ -264,11 +269,10 @@
 					<a href="https://imgur.com/2MfXRaG"><img class="img-thumbnail maxHeightPixel"
 							src="https://i.imgur.com/2MfXRaG.png"></a>
 					<figcaption class="figure-caption text-center">Figure 3: Color spectrum based on descending ordered
-						RGB coordinates. Source: See Reference A below.
+						RGB coordinates. Source: See Reference A.
 					</figcaption>
 				</figure>
 			</div>
-
 			<div class="col-md-12">
 				<p>
 					To address the above three issues, I decided to group the colors into a primary parent color, which
@@ -284,7 +288,8 @@
 					their RGB values are (81, 127, 222) and (0, 109, 224) respectively. I used the <a
 						href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.KDTree.html">SciPy
 						KDTree algorithm</a> to identify for each 10M color coordinate, which was the closest parent
-					CIELAB coordinate (700 colors). By reducing and aggregating the unique color combinations we
+					CIELAB coordinate (700 colors). The KDTree algorthim used is described by Maneewongvatana and Mount
+					1999 (Reference B). By reducing and aggregating the unique color combinations we
 					can address the first two issues. I used the <a href="https://pypi.org/project/colour/">Colour</a>
 					library in Python to identify the order of colors which would approximate an aesthetically pleasing
 					color gradient which can be seen in Figure 4 below, where the 700 colors now smoothly transition
@@ -294,9 +299,8 @@
 				</p>
 			</div>
 			<div class="col-md-12">
-				<p class="fw-light">Color Spectrum of All Movies from 1874-2022</p>
+				<p class="lead">Color Spectrum of All Movies from 1874-2022</p>
 				<figure class="figure">
-
 					<img class="img-thumbnail maxHeightSpectrum" src="https://i.imgur.com/MRP0HOx.jpg">
 					<figcaption class="figure-caption text-center">Figure 4: This is a reduced (16.7M to 700) color
 						spectrum of all the pixels found in the 39.2K movie posters spanning nearly the
@@ -306,10 +310,9 @@
 				</figure>
 			</div>
 
-
 			<!-- Color Spectrum by Decade -->
 			<div class="col-md-12  mt-5">
-				<p class="fw-light">Color Spectrum of Movies by Decade</p>
+				<p class="lead">Color Spectrum of Movies by Decade</p>
 				<figure class="figure">
 					<img class="img-thumbnail maxHeightSpectrum" src="https://i.imgur.com/UN0BEak.jpg">
 					<figcaption class="figure-caption text-center">Figure 5: This is a color spectrum of all the pixels
@@ -319,7 +322,6 @@
 					</figcaption>
 				</figure>
 			</div>
-
 			<div class="col-md-12">
 				<p>
 					Next let's look at the color spectrum across each decade. I excluded movies from 1870 and 2020
@@ -327,8 +329,6 @@
 					at the color spectrum across time.
 				</p>
 			</div>
-
-
 			<div class="col-md-8">
 				<figure class="figure">
 					<p><span class="fst-italic">1880-1900, Monochrome Black and White:</span> This was the
@@ -357,8 +357,6 @@
 					</figcaption>
 				</figure>
 			</div>
-
-
 			<div class="col-md-9">
 				<p><span class="fst-italic">1910-1950, The Dawn of Color:</span> The invention of the four-color
 					wet process, known as CMYK (Cyan, Magenta, Yellow, and Key (black)) printing gave way for
@@ -389,7 +387,6 @@
 						href="https://www.yahoo.com/entertainment/news/why-movie-posters-look-same-193551420.html"><cite>
 							Why Movie Posters All Look the Same</cite></a>
 				</figcaption>
-
 				</p>
 			</div>
 			<div class="col-md-3">
@@ -400,7 +397,6 @@
 					</figcaption>
 				</figure>
 			</div>
-
 			<div class="col-md-8">
 				<p><span class="fst-italic">1990-20210, Orange and Blue:</span> Another trend is the increased use of
 					Blue and Orange across movie posters. In 1910, blue and orange colors only occupied around 7.1% of
@@ -437,7 +433,6 @@
 			</div>
 
 			<div class="col-md-6">
-				<!-- https://help.imdb.com/article/imdb/track-movies-tv/why-do-the-user-ratings-on-many-movies-and-tv-shows-seem-to-decrease-over-time/G4SK7DG5EA35B4GF?ref_=helpart_nav_13# -->
 				<p>We can see the average rating decrease from 7.17 to 6.24 from its peak in the 1920s to
 					2010. Perhaps this is a macro version of the same trend we see with movies and TV show ratings,
 					which tend to decrease over time.
@@ -466,18 +461,15 @@
 				<canvas id="lineAvgRatingChart"></canvas>
 			</div>
 
-
 			<!-- Color Spectrum by Movies by Genre -->
 			<div class="col-md-12 mt-5">
-				<p class="fw-light">Color Spectrum of Movies by Genre</p>
+				<p class="lead">Color Spectrum of Movies by Genre</p>
 				<figure class="figure">
 					<img class="img-thumbnail maxHeightSpectrum" src="https://i.imgur.com/JjJ096w.png">
 					<figcaption class="figure-caption text-center">Figure 10: Color Spectrum of Movies by Genre.
 					</figcaption>
 				</figure>
-
 			</div>
-
 			<div class="col-md-6">
 				<p>
 					We can see that the Horror genre consists of 60.1% of black pixels and 11.0% bright colors (red,
@@ -496,7 +488,6 @@
 				<figure class="figure">
 					<img class="img-thumbnail maxHeightSpectrum" src="https://i.imgur.com/SCqyLcA.png">
 				</figure>
-
 			</div>
 			<div class="col-md-12">
 				<p><small>
@@ -524,7 +515,7 @@
 
 			<!-- Color Spectrum by Rating -->
 			<div class="col-md-12 mt-5">
-				<p class="fw-light">Color Spectrum of Movies by Rating</p>
+				<p class="lead">Color Spectrum of Movies by Rating</p>
 				<figure class="figure">
 					<img class="img-thumbnail maxHeightSpectrum" src="https://i.imgur.com/O84KTuu.png">
 					<figcaption class="figure-caption text-center">Figure 11: Color Spectrum of Movies by Rating.
@@ -547,7 +538,6 @@
 					respectively. We can try to create an Animation / Documentary genre poster to maximize our
 					chances in achieving a high IMDb rating.
 				</p>
-
 			</div>
 			<div class="col-md-6">
 				<canvas id="barChartGenreRatingAverage"></canvas>
@@ -593,7 +583,6 @@
 					<br>Clearly our algorithm was not impressed by my MS Paint skills!
 				</p>
 			</div>
-
 			<div class="col-md-12 mt-4">
 				<p class="lead">
 					Creating a Movie Poster based on a randomly generated image (brute force):
@@ -628,22 +617,22 @@
 			<div class="col-md-12">
 				<small>
 					<ul class="list-group list-group-flush">
-
 						<li class="list-group-item">
 							A. <a href="https://www.alanzucconi.com/2015/09/30/colour-sorting">
 								Alan Zucconi 2015, The incredibly challenging task of sorting colours</a>
 						</li>
 						<li class="list-group-item">
-							A. <a href="https://www.alanzucconi.com/2015/09/30/colour-sorting">
-								Alan Zucconi 2015, The incredibly challenging task of sorting colours</a>
+							B<a href="https://arxiv.org/abs/cs/9901013">
+								Songrit Maneewongvatana, David M. Mount 1999, Analysis of approximate nearest neighbor
+								searching with clustered point sets
+							</a>
 						</li>
-
 					</ul>
 				</small>
 			</div>
 		</div>
 	</div>
-	<script src="regressionClassification.js" />
+	<script src="regressionClassification.js">
 	</script>
 </body>
 
