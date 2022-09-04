@@ -36,10 +36,8 @@
 			max-height: 300px;
 		}
 
-		boxPlotGenreRating {
-			-moz-user-select: none;
-			-webkit-user-select: none;
-			-ms-user-select: none;
+		img.maxHeightPixel {
+			max-height: 100px;
 		}
 	</style>
 	<title>Deep Learning with IMDb Movie Ratings and Genres</title>
@@ -49,6 +47,7 @@
 <body>
 	<div class="jumbotron jumbotron-fluid bg-dark text-white py-2">
 		<div class="container">
+
 			<!-- Fixed navbar -->
 			<nav class="navbar-fluid navbar-dark bg-dark">
 				<a class="navbar-brand" href="#">
@@ -56,15 +55,18 @@
 						width="64" height="32" alt="">
 				</a>
 			</nav>
-			<h1 class="display-5">Deep Learning with IMDb Movie Ratings and Genres</h1>
+			<h1 class="display-5">Deep Learning with IMDb Movie Ratings and Genres
+				<br><small class="text-muted">Color Trends over the Last 150 Years</small>
+			</h1>
+
 			<!-- Question 1 -->
-			<h4 class="mt-5">Q1: Can you judge a movie by it's poster?</h4>
-
-
+			<h4 class="mt-5">Can you judge a movie by its poster?</h4>
 			<div class="row">
 				<p>Upload an image of a movie poster or click on one of the examples to see if a deep learning algorithm
-					can predict it's IMDb Rating and Genre.<br>Where does your selected movie stand against the 39.2K
-					sampled IMDb movies?</p>
+					can predict it's IMDb Rating and Genre.
+					<br>Where does your selected movie stand against the 39.2K sampled IMDb movies?
+				</p>
+
 				<!-- Image upload div. -->
 				<div class="col-md-2">
 					<span class="image-upload">
@@ -76,6 +78,7 @@
 							capture="environment" accept="image/*">
 					</span>
 				</div>
+
 				<!-- Image examples. -->
 				<div class="col-md-2">
 					<img class="img-thumbnail poster" id="imageExampleId0" src="https://i.imgur.com/jhjYIll.jpg">
@@ -124,29 +127,70 @@
 			<div class="col-md-6">
 				<canvas id="horizontalGenreChart">
 			</div>
+			<div class="col-md-6">
+				<p>IMDb Rating Descriptive Statistics</p>
+				<table class="table table-sm">
+					<thead>
+						<tr>
+							<td>Count</td>
+							<td>Mean</td>
+							<td>Std</td>
+							<td>Min</td>
+							<td>25%</td>
+							<td>50%</td>
+							<td>75%</td>
+							<td>Max</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>39,259</td>
+							<td>6.41</td>
+							<td>1.145</td>
+							<td>1.2</td>
+							<td>5.8</td>
+							<td>6.6</td>
+							<td>7.2</td>
+							<td>9.5</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 
-			<!-- Q2: How do I know these predictions are accurate? -->
-			<h4 class="leftYellowBorder mt-5">Q2: How do I know these predictions are accurate?</h4>
-			<p>
-				<span class="fst-italic">Data summary and motivations:</span> The movie rating and genre prediction
-				algorithms were trained on a <a
-					href="https:www.kaggle.com/datasets/neha1703/movie-genre-from-its-poster">
-					dataset of 39.2K movie posters</a> found on <a href="https:www.kaggle.com/">Kaggle</a>.
-				The movies date back from 1874 to 2022, IMDb ratings are on a scale of one to ten, and span
-				across 26 different genres. The main motivations of this project was to explore
-				<a href="https:en.wikipedia.org/wiki/Transfer_learning">transfer learning</a> in computer vision
-				applications while exploring new machine learning tools, data visualization, and web frameworks. In
-				particular, <a href="https:github.com/fastai/fastbook">the fast.ai python library</a> for transfer
-				learning, <a href="https:huggingface.co/spaces">Huggingface spaces</a> to host machine learning
-				applications, <a href="https:github.com/gradio-app/gradio">the Gradio API</a> to create
-				flexible data flows, <a href="https:pytorch.org/hub/pytorch_vision_resnet/">RESNET18</a>
-				a pre-trained model which already learned rich feature representations for a wide range of
-				different object categories, <a href="https:getbootstrap.com/docs/5.0/getting-started/introduction/">
-					the Bootstrap web framework</a> for a highly iterable responsive web user-experience, and <a
-					href="https:www.chartjs.org/">Chart.js</a> for responsive charts built on top of JavaScript. Using
-				these tools we can build a shareable, self-contained dashboard which incorporates an end-to-end deep
-				learning model.
-			</p>
+			<!-- Dataset Summary and Motivations -->
+			<h4 class="leftYellowBorder mt-5">Dataset Summary and Motivations</h4>
+			<div class="col-md-12">
+				<p>
+					<span class="fst-italic">Data summary and motivations:</span> The movie rating and genre prediction
+					algorithms were trained on a <a
+						href="https:www.kaggle.com/datasets/neha1703/movie-genre-from-its-poster">
+						dataset of 39.2K movie posters</a> found on <a href="https:www.kaggle.com/">Kaggle</a>.
+					The movies date back from 1874 to 2022, IMDb ratings are on a scale of one to ten, and span
+					across 26 different genres. The histograms above represent the distribution of IMDb ratings
+					of our movies.
+				</p>
+				<p>The main motivations of this project was to explore
+					<a href="https:en.wikipedia.org/wiki/Transfer_learning">transfer learning</a> in computer vision
+					applications while exploring new machine learning tools, data visualization, and web frameworks. In
+					particular, <a href="https:github.com/fastai/fastbook">the fast.ai python library</a> for transfer
+					learning, <a href="https:huggingface.co/spaces">Huggingface spaces</a> to host machine learning
+					applications, <a href="https:github.com/gradio-app/gradio">the Gradio API</a> to create
+					flexible data flows, <a href="https:pytorch.org/hub/pytorch_vision_resnet/">RESNET18</a>
+					a pre-trained model which already learned rich feature representations for a wide range of
+					different object categories, <a
+						href="https:getbootstrap.com/docs/5.0/getting-started/introduction/">
+						the Bootstrap web framework</a> for a highly iterable responsive web user-experience, and <a
+						href="https:www.chartjs.org/">Chart.js</a> for responsive charts built on top of JavaScript.
+					Using
+					these tools we can build a shareable, self-contained dashboard which incorporates an end-to-end deep
+					learning model.
+				</p>
+			</div>
+
+
+
+			<h4 class="leftYellowBorder mt-5">How accurate are these predictions?</h4>
+			<!-- <h4 class="leftYellowBorder mt-5">Q2: How do I know these predictions are accurate?</h4> -->
 			<p>
 				<span class="fst-italic">IMDb Rating regression model evaluation:</span> With the IMDb rating
 				regression algorithm, the model was able to achieve a (Mean Absolute Error) MAE of 0.79. This
@@ -159,8 +203,6 @@
 				which indicates what constitutes a "bad" poster vs a "good" poster from this small twelve movie sample
 				size.
 			</p>
-			<p class="fw-bold">Can we try to make the "best" movie poster while exploring the
-				posters from a bird's eye view?</p>
 
 			<div class="col-md-6">
 				<figure class="figure">
@@ -181,37 +223,74 @@
 				</figure>
 			</div>
 
-			<p>
-				<span class="fst-italic">IMDb Genre model evaluation:</span> With the Genre classifier, the model was
+			<!-- What is the movie poster input that can maximize our IMDb Rating? -->
+			<h4 class="leftYellowBorder mt-5">What is the movie poster input that can maximize our IMDb rating?</h4>
+			<p class="lead">
+				Can we try to make the highest rated movie poster while exploring the
+				posters from a bird's eye view? What are some of the high-level trends?
 			</p>
 
-			<!-- Q3: How can we view the posters from a bird's eye view? -->
-			<h4 class="leftYellowBorder mt-5">Q3: How can we view the posters from a bird's eye view?</h4>
+			<!-- How can we view the posters from a bird's eye view? -->
+			<h4 class="leftYellowBorder mt-5">How can we view the posters from a bird's eye view?</h4>
+			<div class="col-md-11">
+				<p>
+					One method to view all movie posters from a bird's eye view
+					is to count the number of unique pixel colors and create
+					a color distribution spectrum across several dimensions. I used Python and the
+					<a href="https://pillow.readthedocs.io/en/stable/">PIL library</a> to open
+					each poster, count each pixel color and convert the pixel to a Red, Green, Blue
+					color coordinate (0-255, 0-255, 0-255). This gives us 256<sup>3</sup> number of color combinations
+					or 16.7M colors. An RGB with coordinates (0, 0, 0) would be black and (255, 255, 255) would be
+					white. After scanning the pixels of all 39.K posters we have 10.7M unique colors.
+			</div>
+			<div class="col-md-1">
+				<figure class="figure">
+					<a href="https://imgur.com/tjKmjYM"><img class="img-thumbnail maxHeightPixel"
+							src="https://i.imgur.com/tjKmjYM.png"></a>
+				</figure>
+			</div>
+			<div class="col-md-8">
+				<p>
+					Three issues arise when we have over 10M unique colors to analyze:
+					<br>1. A full-HD monitor is only capable of displaying 1920 x 1080 = 2.0M pixels at once.
+					<br>2. Some colors only appear once out of 10M unique colors which would be challenging to visualize
+					in a graphic.
+					<br>3. We cannot sort nor aggregate colors based on their RGB coordinates. RGB coordinates
+					that are close together, will not necessary result in a smooth color gradient as seen in Figure 3.
+				</p>
+			</div>
+			<div class="col-md-4">
+				<figure class="figure">
+					<a href="https://imgur.com/2MfXRaG"><img class="img-thumbnail maxHeightPixel"
+							src="https://i.imgur.com/2MfXRaG.png"></a>
+					<figcaption class="figure-caption text-center">Figure 3: Color spectrum based on descending ordered
+						RGB coordinates. Source: See Reference A below.
+					</figcaption>
+				</figure>
+			</div>
+
 			<div class="col-md-12">
 				<p>
-					One method to view movie posters at a macroscopic scale would be to obtain the pixel colors (a red,
-					green, blue number ranging from 0-255) for each poster and show the distribution of
-					colors (% of red pixels, % of black pixels, etc.). This results in a
-					combination of 16.7 million or 256x10<sup>3</sup> number of colour combinations.
-					In order to efficiently represent 16.7M colors on a 2D plane we can reduce the
-					number of color combinations by taking each pixel's
-					<a href="https://en.wikipedia.org/wiki/CIELAB_color_space">CIELAB color space</a> and find the
-					closest primary parent color, reducing the number of colors to 700. I used the CIELAB
-					color space to group colors is that unlike the RGB color model, the CIELAB coordinate
-					is designed to approximate human vision. Colors which have CIELAB coordinates that
-					are similar to each-other are similar in color. In contrast, RGB values which are close together,
-					may not. For example, a pixel <span style="color:#5680e0">&#9632;</span>
-					with a blue CIELAB color space cof 4.1x10<sup>-6</sup>, 2.81x10<sup>-7</sup>, -4.77x10<sup>-6</sup>
-					would aggregate to a blue parent color #006de0 <span style="color:#006de0">&#9632;</span>
-					since their CIELAB numerical coordinates are close to each other
-					(small Euclidean distance between the three values) and as a result are visually similar in color.
-					In contrast, the RGB values are (81, 127, 222) and (0, 109, 224) respsectively, so grouping RGB
-					values which have a small Euclidean distance between them would not yield a
-					smooth color gradient. Figure 3 below represents all colors used across 39.K movie
-					posters spanning nearly 150 years. We can see that 75.5% of the colors used will span
-					the black and white spectrum. On the other hand, certain shades of red (#ff0300)
-					only appear %0.00004262 of the time. We can now take this data and analyze our color
-					spectrum across several dimensions: time, genre, and ratings.
+					To address the above three issues, I decided to group the colors into a primary parent color, which
+					would reduce the number of unique colors down from 10M to 700. I converted each RGB coordinate with
+					its <a href="https://en.wikipedia.org/wiki/CIELAB_color_space">CIELAB color space</a> coordinate to
+					find the closest primary parent color. The CIELAB coordinate is designed to approximate human
+					vision. The three coordinates are: L* = Lightness (0 is dark and 1 is light),
+					A* = Red-Green value and B* = yellow-blue value. Colors which have CIELAB coordinates that
+					are similar to each-other (small Euclidean distance) are similar in color to the human eye.
+					For example, a pixel <span style="color:#5680e0">&#9632;</span>
+					with a blue CIELAB color space of (54, 8, -54) would aggregate to a blue parent color #006de0 <span
+						style="color:#006de0">&#9632;</span> with a parent CIELAB color of (46, 9, -67). In contrast,
+					their RGB values are (81, 127, 222) and (0, 109, 224) respectively. I used the <a
+						href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.KDTree.html">SciPy
+						KDTree algorithm</a> to identify for each 10M color coordinate, which was the closest parent
+					CIELAB coordinate (700 colors). By reducing and aggregating the unique color combinations we
+					can address the first two issues. I used the <a href="https://pypi.org/project/colour/">Colour</a>
+					library in Python to identify the order of colors which would approximate an aesthetically pleasing
+					color gradient which can be seen in Figure 4 below, where the 700 colors now smoothly transition
+					from black to white to the other colors of the rainbow. We can see that 75.5% of all the colors used
+					span the black and white spectrum! We can now examine over 39.K movies in a single visualization
+					over several dimensions such as time (decade), genre, and rating.
 				</p>
 			</div>
 			<div class="col-md-12">
@@ -219,14 +298,29 @@
 				<figure class="figure">
 
 					<img class="img-thumbnail maxHeightSpectrum" src="https://i.imgur.com/MRP0HOx.jpg">
-					<figcaption class="figure-caption text-center">Figure 3: This is a reduced (16.7M to 700) color
+					<figcaption class="figure-caption text-center">Figure 4: This is a reduced (16.7M to 700) color
 						spectrum of all the pixels found in the 39.2K movie posters spanning nearly the
 						last 150 years.
 						<br>75.5% of the colors used span the black and white spectrum.
 					</figcaption>
 				</figure>
 			</div>
-			<div class="col-md-12 mt-5">
+
+
+			<!-- Color Spectrum by Decade -->
+			<div class="col-md-12  mt-5">
+				<p class="fw-light">Color Spectrum of Movies by Decade</p>
+				<figure class="figure">
+					<img class="img-thumbnail maxHeightSpectrum" src="https://i.imgur.com/UN0BEak.jpg">
+					<figcaption class="figure-caption text-center">Figure 5: This is a color spectrum of all the pixels
+						across 39.2K movie poster by decade. We can see four distinct eras:
+						<br> 1880-1900 Monochrome black and white, 1910-1950 The dawn of color,
+						1970-2010 Trending to darkness, 1990-2010 Orange and blue contrasts.
+					</figcaption>
+				</figure>
+			</div>
+
+			<div class="col-md-12">
 				<p>
 					Next let's look at the color spectrum across each decade. I excluded movies from 1870 and 2020
 					since they had less than three movies per decade. We can see four general trends when we look
@@ -234,27 +328,7 @@
 				</p>
 			</div>
 
-			<!-- Color Spectrum by Decade -->
-			<div class="col-md-12">
-				<p class="fw-light">Color Spectrum of Movies by Decade</p>
-				<figure class="figure">
-					<img class="img-thumbnail maxHeightSpectrum" src="https://i.imgur.com/UN0BEak.jpg">
-					<figcaption class="figure-caption text-center">Figure 4: This is a color spectrum of all the pixels
-						across 39.2K movie poster by decade. We can see four distinct eras:
-						<br> 1880-1900 Monochrome black and white, 1910-1950 The dawn of color,
-						1970-2010 Trending to darkness, 1990-2010 Orange and bluecontrasts.
-					</figcaption>
-				</figure>
-			</div>
 
-			<div class="col-md-3">
-				<figure class="figure">
-					<a href="https://imgur.com/xUMZqBV"><img class="img-thumbnail maxHeightSpectrum"
-							src="https://i.imgur.com/xUMZqBV.png"></a>
-					<figcaption class="figure-caption text-center">Figure 5: 1880-1900 Black and white.
-					</figcaption>
-				</figure>
-			</div>
 			<div class="col-md-8">
 				<figure class="figure">
 					<p><span class="fst-italic">1880-1900, Monochrome Black and White:</span> This was the
@@ -277,68 +351,120 @@
 			</div>
 			<div class="col-md-3">
 				<figure class="figure">
-					<a href="https://imgur.com/VB5qsdq"><img class="img-thumbnail maxHeightSpectrum"
-							src="https://i.imgur.com/VB5qsdq.png"></a>
-					<figcaption class="figure-caption text-center">Figure 6: 1910-1950 The Dawn of Color.
+					<a href="https://imgur.com/xUMZqBV"><img class="img-thumbnail maxHeightSpectrum"
+							src="https://i.imgur.com/xUMZqBV.png"></a>
+					<figcaption class="figure-caption text-center">Figure 6: 1880-1900 Black and white.
 					</figcaption>
 				</figure>
 			</div>
+
+
 			<div class="col-md-9">
-				<p><span class="fst-italic">1910-1950, The Dawn of Color:</span> The invention of the four
-					color wet process, known as CMYK (Cyan, Magenta, Yellow, and Key (black)) printing gave way for
+				<p><span class="fst-italic">1910-1950, The Dawn of Color:</span> The invention of the four-color
+					wet process, known as CMYK (Cyan, Magenta, Yellow, and Key (black)) printing gave way for
 					producers to create posters with a nearly unlimited color palette at low costs. We can see
-					this in our color spectrum starting from 1910.
+					this in our Figure 5 color spectrum starting from 1910. This timeline also corresponds with
+					when the <a href="https://cmykhistory.com/thomas-a-lenci-and-the-eagle-printing-ink-company/">Eagle
+						Printing Ink company first introduced this technique to print colors back in 1906.</a href>
+				</p>
+			</div>
+			<div class="col-md-3">
+				<figure class="figure">
+					<a href="https://imgur.com/VB5qsdq"><img class="img-thumbnail maxHeightSpectrum"
+							src="https://i.imgur.com/VB5qsdq.png"></a>
+					<figcaption class="figure-caption text-center">Figure 7: 1910-1950 The Dawn of Color.
+					</figcaption>
+				</figure>
+			</div>
+
+			<div class="col-md-9">
+				<p><span class="fst-italic">1970-2010, Trending Towards Darkness:</span> We can see a trend towards
+					darker movie posters during the last few decades. In 1910, the darker palettes occupied only 28.3%
+					of the total color spectrum while in 2010 the darker palettes occupied 58.2%.
+				<p><small>"Some movie theorists believe this is related to the popularity of
+						action, thrillers, and sci-fi of the past decade may have led to a darker and more
+						"masculine" palette."</small></p>
+				<figcaption class="blockquote-footer">
+					Nola Barackman, 2013 <a
+						href="https://www.yahoo.com/entertainment/news/why-movie-posters-look-same-193551420.html"><cite>
+							Why Movie Posters All Look the Same</cite></a>
+				</figcaption>
+
 				</p>
 			</div>
 			<div class="col-md-3">
 				<figure class="figure">
 					<a href="https://imgur.com/RbJEbgr"><img class="img-thumbnail maxHeightSpectrum"
 							src="https://i.imgur.com/RbJEbgr.png"></a>
-					<figcaption class="figure-caption text-center">Figure 7: 1970-2010 Trending towards Darkness.
+					<figcaption class="figure-caption text-center">Figure 8: 1970-2010 Trending towards Darkness.
 					</figcaption>
 				</figure>
 			</div>
-			<div class="col-md-9">
-				<p><span class="fst-italic">1970-2010, Trending Towards Darkness:</span> We can see a trend towards
-					darker movie posters some movie theorists believe this is related to the popularity of
-					action, thrillers, and sci-fi of the past decade may have led to a darker and more "masculine"
-					palette. Some film theorists speculate that 9/11 and the economic downturn have led the public to
-					crave grittier stories, since a sugarcoated world no longer feels real to them. Compare the '90s-era
-					Batman and Bond movies — full of camp and comedy — to their gritty modern counterparts and you'll
-					see a distinct difference in style.
+
+			<div class="col-md-8">
+				<p><span class="fst-italic">1990-20210, Orange and Blue:</span> Another trend is the increased use of
+					Blue and Orange across movie posters. In 1910, blue and orange colors only occupied around 7.1% of
+					the total color spectrum versus 12.2% in 2010. Our analysis also aligns with the observations found
+					in many <a href="https://www.youtube.com/watch?v=NXrIMXNh1qs">videos</a> and <a
+						href="https://www.obsev.com/entertainment/orange-and-blue-movie-posters/">articles</a>.
+					The articles discuss how blue and orange are on opposite sides of the color wheel which makes them
+					complimentary colors, causing them to pop in the poster image.
+				<p><small>"There's a very simple answer for why there's always so much orange and blue in
+						movies, and it all starts with skin tone. Human skin tones generally fall somewhere in
+						the orange spectrum."<br></small></p>
+				<figcaption class="blockquote-footer">
+					Atom Creative Media <a
+						href="https://www.atomcreativemedia.com/blog/entertainment/why-do-we-see-so-much-orange-and-blue-in-movies/"><cite>Why
+							do we see so much orange and blue in movies</cite></a>
+				</figcaption>
 				</p>
+			</div>
+			<div class="col-md-1">
+				<figure class="figure">
+					<a
+						href="https://hgtvhome.sndimg.com/content/dam/images/hgtv/fullset/2011/7/18/0/HGTV_Color-Wheel-Full_s4x3.jpg.rend.hgtvcom.1280.960.suffix/1400967008479.jpeg"><img
+							class="img-thumbnail maxHeightSpectrum"
+							src="https://hgtvhome.sndimg.com/content/dam/images/hgtv/fullset/2011/7/18/0/HGTV_Color-Wheel-Full_s4x3.jpg.rend.hgtvcom.1280.960.suffix/1400967008479.jpeg"></a>
+				</figure>
 			</div>
 			<div class="col-md-3">
 				<figure class="figure">
 					<a href="https://imgur.com/KQBEYr5"><img class="img-thumbnail maxHeightSpectrum"
 							src="https://i.imgur.com/KQBEYr5.png"></a>
-					<figcaption class="figure-caption text-center">Figure 8: 1990-2010 Orange and Blue.
+					<figcaption class="figure-caption text-center">Figure 9: 1990-2010 Orange and Blue.
 					</figcaption>
 				</figure>
 			</div>
-			<div class="col-md-9">
-				<p><span class="fst-italic">1990-20210, Orange and Blue:</span> Blue and orange are a powerful
-					combination because unlike other color pairings — red and green, pink and blue — they don't conjure
-					cultural associations that are already set in stone. They sit on opposite sides of the color wheel,
-					evoking the two poles of hot and cold and explosive action. And Hollywood ad makers know it. Notes:
-					Add examples Empire Strikes back maker. Generally, the oranges are used to highlight explosions,
-					bright skies and boost skin tones towards the hyper-real end whilst the contrasting blues (opposite
-					orange on the colour wheel) exaggerate stormy skies/seas and help create mood and tension.
-					https://colormetrix.com/blog/oranges-blues-prevalent-movie-industry/ Discuss Complementary colour
-					wheel.
 
+			<div class="col-md-6">
+				<!-- https://help.imdb.com/article/imdb/track-movies-tv/why-do-the-user-ratings-on-many-movies-and-tv-shows-seem-to-decrease-over-time/G4SK7DG5EA35B4GF?ref_=helpart_nav_13# -->
+				<p>We can see the average rating decrease from 7.17 to 6.24 from its peak in the 1920s to
+					2010. Perhaps this is a macro version of the same trend we see with movies and TV show ratings,
+					which tend to decrease over time.
+				</p>
+				<p><small>It is fairly common for many movies and TV shows to have a relatively high rating when
+						they first appear, only to have the rating go down over the following months.
+						People who are more eager/interested in the title (and therefore more likely to be
+						inclined to give it a good rating) usually go see it as soon as it opens or airs. The
+						initial rating therefore tends to be heavily skewed towards the high end of the scale.
+						Over time, the title is seen by a wider audience of casual viewers and attracts votes
+						from people who may not necessarily be fans of the genre or who have different
+						expectations and may therefore have a less favorable opinion.<br></small></p>
+				<figcaption class="blockquote-footer">
+					IMDb | Help <a
+						href="https://help.imdb.com/article/imdb/track-movies-tv/why-do-the-user-ratings-on-many-movies-and-tv-shows-seem-to-decrease-over-time/G4SK7DG5EA35B4GF?ref_=helpart_nav_13#"><cite>Why
+							do the user ratings on many movies and TV shows seem to decrease over time?</cite></a>
+				</figcaption>
+				<p>There appears to be two ideas we can draw from this for our own movie poster:
+					<br>1. We can perhaps utilize a 1920s color theme to maximize our IMDb rating to rekindle
+					the novelty factor as this was the era which had the highest average IMDb rating.
+					<br>2. We can avoid following the trend to dark colors >58.2% and the use of orange and blue colors
+					>12.2%, as these trends correlate with decreasing IMDB ratings.
 				</p>
 			</div>
 			<div class="col-md-6">
 				<canvas id="lineAvgRatingChart"></canvas>
 			</div>
-			<div class="col-md-6">
-				<!-- https://help.imdb.com/article/imdb/track-movies-tv/why-do-the-user-ratings-on-many-movies-and-tv-shows-seem-to-decrease-over-time/G4SK7DG5EA35B4GF?ref_=helpart_nav_13# -->
-				<p>We can see the average rating decrease by 12.9% from it's peak in the 1920's to 2010. For our poster
-					we can perhaps utilize a 1920s vibe to maximize our IMDb rating.
-				</p>
-			</div>
-
 
 
 			<!-- Color Spectrum by Movies by Genre -->
@@ -346,21 +472,53 @@
 				<p class="fw-light">Color Spectrum of Movies by Genre</p>
 				<figure class="figure">
 					<img class="img-thumbnail maxHeightSpectrum" src="https://i.imgur.com/JjJ096w.png">
-					<figcaption class="figure-caption text-center">Figure 9: Color Spectrum of Movies by Genre.
+					<figcaption class="figure-caption text-center">Figure 10: Color Spectrum of Movies by Genre.
 					</figcaption>
 				</figure>
+
+			</div>
+
+			<div class="col-md-6">
+				<p>
+					We can see that the Horror genre consists of 60.1% of black pixels and 11.0% bright colors (red,
+					orange, yellow, etc.) while the Family genre consists of 31.3% black pixels and 33.5% bright colors.
+					We can see an increase in percentage of bright colors as we transition into the light-hearted
+					genres.
+				</p>
+				<p>
+					What is the psychology of dark colors and how does it impact movie poster colors?
+					Alan Costall and Tom Clarke, from the Department of Psychology at the University of Portsmouth
+					explored the symbolism of colors in their 2006 paper Emotional Connotations of Color: A Qualitative
+					Investigation".
+				</p>
 			</div>
 			<div class="col-md-6">
 				<figure class="figure">
 					<img class="img-thumbnail maxHeightSpectrum" src="https://i.imgur.com/SCqyLcA.png">
 				</figure>
+
 			</div>
-			<div class="col-md-6">
+			<div class="col-md-12">
+				<p><small>
+						The responses obtained for black were consistent with the research of Adams and Osgood and
+						Wexner who reported that black is bad, strong, and inactive as well as powerful and
+						masterful.
+						About 69% of our participants regarded it as a symbol of evil, malice and death.
+						69% of the participants reported that both orange and yellow were "happy" colors.
+					</small></p>
+				<figcaption class="blockquote-footer">
+					Tom Clarke, Alan Costall, 2006
+					<a
+						href="https://help.imdb.com/article/imdb/track-movies-tv/why-do-the-user-ratings-on-many-movies-and-tv-shows-seem-to-decrease-over-time/G4SK7DG5EA35B4GF?ref_=helpart_nav_13#">
+						<cite>The Emotional Connotations of Color: A Qualitative Investigation</cite></a>
+				</figcaption>
 				<p>
-					We can see that the Horror genre consists of about 60.1% of black pixels and that we trend towards a
-					higher use of bright colors such as red, orange, yellow, and green, as we move towards the
-					light hearted Animation and Family genres. Comment about color theory and perceptions of
-					brighter color is happier, maybe marketing? How does the Genre impact IMDb rating?
+					<a href="https://en.wikipedia.org/wiki/Color_psychology">Color psychology</a> is the study of
+					colors as a determinant of human behavior. The article discusses how ancient Egyptians and Chinese
+					civilizations used colors as a method of treatment as early as 2000 BC and how in the 20th century,
+					Carl Jung pioneered the field of color psychology exploring the meanings of color emotionally.
+					This demonstrates our long cultural relationship with colors and how different colors can elicit
+					a range of emotions.
 				</p>
 			</div>
 
@@ -374,40 +532,116 @@
 				</figure>
 			</div>
 			<div class="col-md-6">
-				<canvas id="barChartGenreRatingAverage">
+				<p>
+					Next, we can split color spectrum into by IMDb ratings into three equal buckets Low (Less
+					than 3.3), Mid (3.3-6.6), and High (Greater than 6.6). For the low rated movies, the dark colors
+					occupy around 58.2% of the total spectrum. For high rated movies, the dark colors occupy 35.2%
+					of the total color spectrum. This is partially a result of the Horror and Action genres which have
+					an average
+					rating of 4.89 and 5.72 respectively. In our prior analysis we saw that these two genres contain
+					>55%
+					dark colors.
+				</p>
+				<p>
+					We can see that the average IMDb rating for the Animation and Documentary genre is 6.84 and 7.28
+					respectively. We can try to create an Animation / Documentary genre poster to maximize our
+					chances in achieving a high IMDb rating.
+				</p>
+
 			</div>
 			<div class="col-md-6">
-				<p>Next, we can split color spectrum into by IMDb ratings into three equal buckets Low (Less than 3.3),
-					Mid (3.3-6.6), and High (Greater than 6.6). We
-					can see that as we decreasing percentage of dark cells as we move to higher rated (>6.7 IMDb
-					rating) movies. This can
-					be attributed to much of these low rated movies being the Horror and Action genres as we saw had
-					higher
-					below. This gives us some inspiration to create a Documentary looking movie poster with a 40% of
-					black pixels.
-				</p>
+				<canvas id="barChartGenreRatingAverage"></canvas>
 			</div>
 
-			<!-- Q4: What is the best possible rated movie poster? -->
-			<h4 class="leftYellowBorder mt-5">Q4: What is the best possible rated movie poster?</h4>
+			<!-- Q4: What is the highest possible rated movie poster? -->
+			<h4 class="leftYellowBorder mt-5">What is the highest possible rated movie poster?</h4>
 			<div class="col-md-12">
-				<p>Recapping our analysis, it's a Documentary / Animation, occupies around 40% darker colors, try to
-					adopt blue and orange color to stay cool and relevent.
+				<p class="lead">
+					Creating a Movie Poster based on our color analysis:
+				</p>
+				<p>
+					Recapping our analysis to maximize our chances in creating highest rated IMDb poster,
+					we will need to:
+					<br>1. Recapture the novelty factor of the 1920s and mimic the 1920s color palette.
+					<br>2. Use a lighter color palette with dark colors less than 52.2%.
+					<br>3. Avoid the blue and colors greater than 12.2%.
+					<br>4. Create an Animation / Documentary style movie poster.
+					<br>
+				</p>
+				<p>
+					I took a look at the top three rated movies which were Shawshank Redemption, The Godfather,
+					and the Dark Knight to draw some additional inspiration.
+				</p>
+				<p>
+					Since I only have MS Paint installed on my computer I will try my best to create a
+					movie poster following the criteria above to create...
+					<br>"An Animated Documentary of the making of Dark Shawshank Godknight Part II"!
 				</p>
 			</div>
+			<div class="col-md-2">
+				<a href="https://imgur.com/U3RrkF1">
+					<img class="img-thumbnail poster" src="https://i.imgur.com/U3RrkF1.png">
+				</a>
+			</div>
+			<div class="col-md-10">
+				<img class="img-thumbnail" src="https://i.imgur.com/9ZMlW71.png">
+			</div>
+			<div class="col-md-12 mt-2">
+				<p>
+					Our poster was able to achieve an IMDb rating of 6.9 and our algorithm was able to identify
+					the genre as a Documentary!
+					<br>Clearly our algorithm was not impressed by my MS Paint skills!
+				</p>
+			</div>
+
+			<div class="col-md-12 mt-4">
+				<p class="lead">
+					Creating a Movie Poster based on a randomly generated image (brute force):
+				</p>
+				<p>
+					Another approach would be to randomly generate colors and pick the image with the highest
+					score. I used Python's random number generator and fed into the machine learning algorithm
+					for 100 iterations. With this methodology I was able to increase the IMDb rating
+					to 7.5 but the algorithm was not able to confidently classify the genre with only 64%
+					confidence as a Comedy.
+				</p>
+			</div>
+			<div class="col-md-2">
+				<a href="https://imgur.com/BcP8paQ">
+					<img class="img-thumbnail poster" src="https://i.imgur.com/BcP8paQ.png">
+				</a>
+			</div>
+			<div class="col-md-10">
+				<img class="img-thumbnail" src="https://i.imgur.com/5VhNYUr.png">
+			</div>
+			<!-- Call to Action: Alright them show me  -->
+			<h4 class="leftYellowBorder mt-5">Call to Action: Can you try and beat my score?</h4>
 			<div class="col-md-12">
-				<p>Recapping our analysis to maximize our chances in creating highest rated IMDb poster:
-					1. Recapture the greatness of 1920s
-					1. Adopt X and y % blue and orange color.
-					2. Occupies around 40% darker colors,
-					3.
+				<p class="lead">
+					I challenge you to create a movie poster and try to beat my score!
+					<br>Please send your works of art to me at hirohoso@.
 				</p>
 			</div>
 
+			<!-- List of References -->
+			<h4 class="leftYellowBorder mt-5">List of References</h4>
+			<div class="col-md-12">
+				<small>
+					<ul class="list-group list-group-flush">
 
+						<li class="list-group-item">
+							A. <a href="https://www.alanzucconi.com/2015/09/30/colour-sorting">
+								Alan Zucconi 2015, The incredibly challenging task of sorting colours</a>
+						</li>
+						<li class="list-group-item">
+							A. <a href="https://www.alanzucconi.com/2015/09/30/colour-sorting">
+								Alan Zucconi 2015, The incredibly challenging task of sorting colours</a>
+						</li>
+
+					</ul>
+				</small>
+			</div>
 		</div>
-
-
 	</div>
 	<script src="regressionClassification.js" />
 	</script>
