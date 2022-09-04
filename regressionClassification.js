@@ -336,22 +336,13 @@ const avgGenreCtx = document.getElementById("barChartGenreRatingAverage").getCon
 let avgGenreBarChart = new Chart(avgGenreCtx, {
     type: 'bar',
     data: {
-        labels: ['Horror',
-            'Action',
-            'Other',
-            'Adventure',
-            'Comedy',
-            'Family',
-            'Crime',
-            'Short',
-            'Drama',
-            'Biography',
-            'Animation',
-            'Documentary'],
+        labels: ['Horror', 'Action', 'Other', 'Adventure', 'Comedy', 'Family',
+            'Crime', 'Short', 'Drama', 'Biography', 'Animation', 'Documentary'],
         datasets: [
             {
                 label: "Average IMDb Rating by Genre",
-                data: [4.89, 5.72, 5.96, 6.08, 6.37, 6.39, 6.40, 6.79, 6.79, 6.79, 6.84, 7.28]
+                data: [4.89, 5.72, 5.96, 6.08, 6.37, 6.39,
+                    6.40, 6.79, 6.79, 6.79, 6.84, 7.28]
             }
         ]
     }, options: {
