@@ -198,16 +198,16 @@
 			<h4 class="leftYellowBorder mt-5">How accurate are these predictions?</h4>
 			<p>
 				With the IMDb rating regression algorithm, the model was able to achieve a MAE (Mean Absolute Error) of
-				0.79. This outperforms naive models such as median, mean, and mode, which achieve an MAE of 0.88, 0.89,
+				0.79. This outperforms naïve models such as median, mean, and mode, which achieve an MAE of 0.88, 0.89,
 				and 1.02 respectively. When we sample some predicted scores in our test set, we can see that the
 				algorithm has some predictive qualities in assessing movie quality (or IMDb rating).
 				<span class="fw-bold">Figure 1</span> shows a sample of six movie poster with a predicted score of two or below. Who can forget
 				timeless classics like "3 Little Ninjas", "Bigfoot Terror", and "Age of Ice"! <span class="fw-bold">Figure 2</span> shows a sample
 				of six movie posters with a predicted rating greater than 7.9. There seems to be some signal
-				which indicates what constitutes a "bad" poster vs a "good" poster from this small twelve movie sample
-				size. For our genre classification algorthim, the model had an error rate of 47% which is
-				not very accurate. This can be attributed to some movies which cover several genres such as Drama /
-				Action and the 26 number of possible genre classifications. In contrast, a naïve algorithm such as
+				which indicates what a "bad" poster vs a "good" poster is from this small sample size of twelve movies. 
+				For our genre classification algorthim, the model had an error rate of 47% which is
+				not very accurate. This can be attributed to some movies which cover several genres such as Drama |
+				Action and the 26 possible genre classifications. In contrast, a naïve algorithm such as
 				always predicting “Drama” would yield a 75% error rate. For future iterations I would
 				like to deep dive into improving the accuracy and / or use a multi-classification model to
 				better represent the actual data.
