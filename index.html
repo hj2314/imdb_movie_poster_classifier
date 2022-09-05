@@ -174,8 +174,7 @@
 					The movies date back from 1874 to 2022, IMDb ratings are on a scale of one to ten, and span
 					across 26 different genres. In our original dataset 73.2% of the movies had several genres (example:
 					Action|Comedy). I cleaned the data so there was only one genre associated with each movie to
-					simplify
-					the classification problem.
+					simplify the classification problem.
 				</p>
 				<p>The main motivations of this project was to explore
 					<a href="https:en.wikipedia.org/wiki/Transfer_learning">transfer learning</a> in computer vision
@@ -189,9 +188,8 @@
 						href="https:getbootstrap.com/docs/5.0/getting-started/introduction/">
 						the Bootstrap web framework</a> for a highly iterable responsive web user-experience, and <a
 						href="https:www.chartjs.org/">Chart.js</a> for responsive charts built on top of JavaScript.
-					Using
-					these tools we can build a shareable, self-contained dashboard which incorporates an end-to-end deep
-					learning model.
+					Using these tools we can build a shareable, self-contained dashboard which incorporates an
+					end-to-end deep learning model.
 				</p>
 			</div>
 
@@ -269,7 +267,7 @@
 					<a href="https://imgur.com/2MfXRaG"><img class="img-thumbnail maxHeightPixel"
 							src="https://i.imgur.com/2MfXRaG.png"></a>
 					<figcaption class="figure-caption text-center">Figure 3: Color spectrum based on descending ordered
-						RGB coordinates. Source: See Reference A.
+						RGB coordinates. Source: See Reference <sup>A</sup>.
 					</figcaption>
 				</figure>
 			</div>
@@ -289,12 +287,12 @@
 						href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.KDTree.html">SciPy
 						KDTree algorithm</a> to identify for each 10M color coordinate, which was the closest parent
 					CIELAB coordinate (700 colors). The KDTree algorthim used is described by Maneewongvatana and Mount
-					1999 (Reference B). By reducing and aggregating the unique color combinations we
+					1999 <Sup>B</Sup>. By reducing and aggregating the unique color combinations we
 					can address the first two issues. I used the <a href="https://pypi.org/project/colour/">Colour</a>
 					library in Python to identify the order of colors which would approximate an aesthetically pleasing
 					color gradient which can be seen in Figure 4 below, where the 700 colors now smoothly transition
 					from black to white to the other colors of the rainbow. We can see that 75.5% of all the colors used
-					span the black and white spectrum! We can now examine over 39.K movies in a single visualization
+					span the black and white spectrum. We can now examine over 39.K movies in a single visualization
 					over several dimensions such as time (decade), genre, and rating.
 				</p>
 			</div>
@@ -363,7 +361,8 @@
 					producers to create posters with a nearly unlimited color palette at low costs. We can see
 					this in our Figure 5 color spectrum starting from 1910. This timeline also corresponds with
 					when the <a href="https://cmykhistory.com/thomas-a-lenci-and-the-eagle-printing-ink-company/">Eagle
-						Printing Ink company first introduced this technique to print colors back in 1906.</a href>
+						Printing Ink company first introduced this technique to print colors back in
+						1906.</a> <sup>C</sup>
 				</p>
 			</div>
 			<div class="col-md-3">
@@ -385,7 +384,7 @@
 				<figcaption class="blockquote-footer">
 					Nola Barackman, 2013 <a
 						href="https://www.yahoo.com/entertainment/news/why-movie-posters-look-same-193551420.html"><cite>
-							Why Movie Posters All Look the Same</cite></a>
+							Why Movie Posters All Look the Same</cite></a> <sup>D</sup>
 				</figcaption>
 				</p>
 			</div>
@@ -410,8 +409,8 @@
 						the orange spectrum."<br></small></p>
 				<figcaption class="blockquote-footer">
 					Atom Creative Media <a
-						href="https://www.atomcreativemedia.com/blog/entertainment/why-do-we-see-so-much-orange-and-blue-in-movies/"><cite>Why
-							do we see so much orange and blue in movies</cite></a>
+						href="https://www.atomcreativemedia.com/blog/entertainment/why-do-we-see-so-much-orange-and-blue-in-movies/"><cite>
+							Why do we see so much orange and blue in movies</cite></a> <sup>E</sup>
 				</figcaption>
 				</p>
 			</div>
@@ -446,9 +445,11 @@
 						from people who may not necessarily be fans of the genre or who have different
 						expectations and may therefore have a less favorable opinion.<br></small></p>
 				<figcaption class="blockquote-footer">
-					IMDb | Help <a
-						href="https://help.imdb.com/article/imdb/track-movies-tv/why-do-the-user-ratings-on-many-movies-and-tv-shows-seem-to-decrease-over-time/G4SK7DG5EA35B4GF?ref_=helpart_nav_13#"><cite>Why
-							do the user ratings on many movies and TV shows seem to decrease over time?</cite></a>
+					IMDb | Help
+					<a
+						href="https://help.imdb.com/article/imdb/track-movies-tv/why-do-the-user-ratings-on-many-movies-and-tv-shows-seem-to-decrease-over-time/G4SK7DG5EA35B4GF?ref_=helpart_nav_13#"><cite>
+							Why do the user ratings on many movies and TV shows seem to decrease over time?</cite>
+					</a> <sup>F</sup>
 				</figcaption>
 				<p>There appears to be two ideas we can draw from this for our own movie poster:
 					<br>1. We can perhaps utilize a 1920s color theme to maximize our IMDb rating to rekindle
@@ -500,9 +501,9 @@
 				<figcaption class="blockquote-footer">
 					Tom Clarke, Alan Costall, 2006
 					<a
-						href="https://help.imdb.com/article/imdb/track-movies-tv/why-do-the-user-ratings-on-many-movies-and-tv-shows-seem-to-decrease-over-time/G4SK7DG5EA35B4GF?ref_=helpart_nav_13#">
+						href="https://www.researchgate.net/publication/229661860_The_emotional_connotations_of_color_A_qualitative_investigation">
 						<cite>The Emotional Connotations of Color: A Qualitative Investigation</cite></a>
-				</figcaption>
+				</figcaption> <sup>G</sup>
 				<p>
 					<a href="https://en.wikipedia.org/wiki/Color_psychology">Color psychology</a> is the study of
 					colors as a determinant of human behavior. The article discusses how ancient Egyptians and Chinese
@@ -528,10 +529,8 @@
 					than 3.3), Mid (3.3-6.6), and High (Greater than 6.6). For the low rated movies, the dark colors
 					occupy around 58.2% of the total spectrum. For high rated movies, the dark colors occupy 35.2%
 					of the total color spectrum. This is partially a result of the Horror and Action genres which have
-					an average
-					rating of 4.89 and 5.72 respectively. In our prior analysis we saw that these two genres contain
-					>55%
-					dark colors.
+					an average rating of 4.89 and 5.72 respectively. In our prior analysis we saw that these two genres
+					contain >55% dark colors.
 				</p>
 				<p>
 					We can see that the average IMDb rating for the Animation and Documentary genre is 6.84 and 7.28
@@ -545,7 +544,7 @@
 
 			<!-- Q4: What is the highest possible rated movie poster? -->
 			<h4 class="leftYellowBorder mt-5">What is the highest possible rated movie poster?</h4>
-			<div class="col-md-12">
+			<div class="col-md-12 mt-2">
 				<p class="lead">
 					Creating a Movie Poster based on our color analysis:
 				</p>
@@ -556,7 +555,6 @@
 					<br>2. Use a lighter color palette with dark colors less than 52.2%.
 					<br>3. Avoid the blue and colors greater than 12.2%.
 					<br>4. Create an Animation / Documentary style movie poster.
-					<br>
 				</p>
 				<p>
 					I took a look at the top three rated movies which were Shawshank Redemption, The Godfather,
@@ -613,18 +611,49 @@
 			</div>
 
 			<!-- List of References -->
+
 			<h4 class="leftYellowBorder mt-5">List of References</h4>
 			<div class="col-md-12">
 				<small>
 					<ul class="list-group list-group-flush">
 						<li class="list-group-item">
-							A. <a href="https://www.alanzucconi.com/2015/09/30/colour-sorting">
-								Alan Zucconi 2015, The incredibly challenging task of sorting colours</a>
+							A. Alan Zucconi 2015, <a href="https://www.alanzucconi.com/2015/09/30/colour-sorting">
+								The incredibly challenging task of sorting colours
+							</a>
 						</li>
 						<li class="list-group-item">
-							B<a href="https://arxiv.org/abs/cs/9901013">
-								Songrit Maneewongvatana, David M. Mount 1999, Analysis of approximate nearest neighbor
-								searching with clustered point sets
+							B. Songrit Maneewongvatana, David M. Mount 1999, <a href="https://arxiv.org/abs/cs/9901013">
+								Analysis of approximate nearest neighbor searching with clustered point sets
+							</a>
+						</li>
+						<li class="list-group-item">
+							C. Brian Gamm 2020, <a
+								href="https://cmykhistory.com/thomas-a-lenci-and-the-eagle-printing-ink-company/">
+								Thomas A. Lenci and the Eagle Printing Ink Company
+							</a>
+						</li>
+						<li class="list-group-item">
+							D. Nola Barackman 2013, <a
+								href="https://www.yahoo.com/entertainment/news/why-movie-posters-look-same-193551420.html">
+								Why Movie Posters All Look the Same
+							</a>
+						</li>
+						<li class="list-group-item">
+							E. Atom Creative Media, <a
+								href="https://www.atomcreativemedia.com/blog/entertainment/why-do-we-see-so-much-orange-and-blue-in-movies/">
+								Why do we see so much orange and blue in movies
+							</a>
+						</li>
+						<li class="list-group-item">
+							F. IMDb | Help, <a
+								href="https://help.imdb.com/article/imdb/track-movies-tv/why-do-the-user-ratings-on-many-movies-and-tv-shows-seem-to-decrease-over-time/G4SK7DG5EA35B4GF?ref_=helpart_nav_13#">
+								Why do the user ratings on many movies and TV shows seem to decrease over time?
+							</a>
+						</li>
+						<li class="list-group-item">
+							G. Tom Clarke, Alan Costall, 2006, <a
+								href="https://www.researchgate.net/publication/229661860_The_emotional_connotations_of_color_A_qualitative_investigation">
+								The Emotional Connotations of Color: A Qualitative Investigation
 							</a>
 						</li>
 					</ul>
