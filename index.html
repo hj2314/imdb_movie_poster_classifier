@@ -180,7 +180,7 @@
 				<p>The main motivations of this project were to explore
 					<a href="https://en.wikipedia.org/wiki/Transfer_learning">transfer learning</a> in computer vision
 					applications while exploring new machine learning tools, data visualization, and web frameworks. In
-					particular, <a href="https://github.com/fastai/fastbook">the fast.ai python library</a> for transfer
+					particular, <a href="https://github.com/fastai/fastbook">the fast.ai Python library</a> for transfer
 					learning, <a href="https://huggingface.co/spaces">Huggingface spaces</a> to host machine learning
 					applications, <a href="https://github.com/gradio-app/gradio">the Gradio API</a> to create
 					flexible data flows, <a href="https://pytorch.org/hub/pytorch_vision_resnet/">RESNET18</a>
@@ -231,8 +231,8 @@
 				</figure>
 			</div>
 
-			<!-- What is the movie poster input that can maximize our IMDb Rating? -->
-			<h4 class="leftYellowBorder mt-5">What is the movie poster input that can maximize our IMDb rating?</h4>
+			<!-- What movie poster input will maximize our IMDb rating? -->
+			<h4 class="leftYellowBorder mt-5">What movie poster input will maximize our IMDb rating?</h4>
 			<p class="lead">
 				Can we try to make the highest rated movie poster while exploring the
 				posters from a bird's eye view? What are some of the high-level trends?
@@ -247,9 +247,10 @@
 					a color distribution spectrum across several dimensions. I used Python and the
 					<a href="https://pillow.readthedocs.io/en/stable/">PIL library</a> to open
 					each poster, count each pixel color and convert the pixel to a Red, Green, Blue
-					color coordinate (0-255, 0-255, 0-255). This gives us 256<sup>3</sup> number of color combinations
-					or 16.7M colors. An RGB with coordinates (0, 0, 0) would be black and (255, 255, 255) would be
-					white. After scanning the pixels of all 39.K posters we have 10.7M unique colors.
+					color coordinate (0-255, 0-255, 0-255). RGB with coordinates (0, 0, 0) would 
+					be black and (255, 255, 255) would be white.
+					This gives us 256<sup>3</sup> number of color combinations or 16.7M colors. 
+					After scanning the pixels of all 39.K posters we have 10.7M unique colors.
 			</div>
 			<div class="col-md-1">
 				<figure class="figure">
@@ -264,7 +265,7 @@
 					<br>2. Some colors only appear once out of 10M unique colors which would be challenging to visualize
 					in a graphic.
 					<br>3. We cannot sort nor aggregate colors based on their RGB coordinates. RGB coordinates
-					that are close together, will not necessary result in a smooth color gradient as seen in <span class="fw-bold">Figure 3</span>.
+					that are close together will not necessary result in a smooth color gradient as seen in <span class="fw-bold">Figure 3</span>.
 				</p>
 			</div>
 				<figure class="figure">
