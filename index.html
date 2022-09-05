@@ -280,9 +280,9 @@
 			<div class="col-md-12">
 				<p>
 					To address the above three issues, I decided to group the colors into a primary parent color, which
-					would reduce the number of unique colors down from 10M to 700. I converted each RGB coordinate with
-					its <a href="https://en.wikipedia.org/wiki/CIELAB_color_space">CIELAB color space</a> coordinate to
-					find the closest primary parent color. The CIELAB coordinate is designed to approximate human
+					would reduce the number of unique colors down from 10M to approximately 700. I converted each 
+					RGB coordinate with its <a href="https://en.wikipedia.org/wiki/CIELAB_color_space">CIELAB color space</a> 
+					coordinate to find the closest primary parent color. The CIELAB coordinate is designed to approximate human
 					vision. The three coordinates are: L* = Lightness (0 is dark and 1 is light),
 					A* = Red-Green value and B* = yellow-blue value. Colors which have CIELAB coordinates that
 					are similar to each-other (small Euclidean distance) are similar in color to the human eye.
@@ -292,11 +292,11 @@
 					their RGB values are (81, 127, 222) and (0, 109, 224) respectively. I used the <a
 						href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.KDTree.html">SciPy
 						KDTree algorithm</a> to identify for each 10M color coordinate, which was the closest parent
-					CIELAB coordinate (700 colors). The KDTree algorthim used is described by Maneewongvatana and Mount
+					CIELAB coordinate (~700 colors). The KDTree algorthim used is described by Maneewongvatana and Mount
 					1999 <Sup>B</Sup>. By reducing and aggregating the unique color combinations we
 					can address the first two issues. I used the <a href="https://pypi.org/project/colour/">Colour</a>
 					library in Python to identify the order of colors which would approximate an aesthetically pleasing
-					color gradient which can be seen in Figure 4 below, where the 700 colors now smoothly transition
+					color gradient which can be seen in Figure 4 below, where the ~700 colors now smoothly transition
 					from black to white to the other colors of the rainbow. We can see that 75.5% of all the colors used
 					span the black and white spectrum. We can now examine over 39.K movies in a single visualization
 					over several dimensions such as time (decade), genre, and rating.
@@ -306,7 +306,7 @@
 				<p class="lead">Color Spectrum of All Movies from 1874-2022</p>
 				<figure class="figure">
 					<img class="img-thumbnail maxHeightSpectrum" src="https://i.imgur.com/MRP0HOx.jpg">
-					<figcaption class="figure-caption text-center">Figure 4: This is a reduced (16.7M to 700) color
+					<figcaption class="figure-caption text-center">Figure 4: This is a reduced (16.7M to ~700) color
 						spectrum of all the pixels found in the 39.2K movie posters spanning nearly the
 						last 150 years.
 						<br>75.5% of the colors used span the black and white spectrum.
