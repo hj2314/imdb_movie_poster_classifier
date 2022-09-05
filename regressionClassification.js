@@ -13,6 +13,16 @@ const imageExampleIdImgs = {
 };
 
 
+// Init actual ratings genres of image example posters.
+const imageExampleIdActRatingsGenres = {
+    "imageExampleId0": [8.0, "Documentary"],
+    "imageExampleId1": [8.5, "Drama"],
+    "imageExampleId2": [6.5, "Comedy"],
+    "imageExampleId3": [4.9, "Horror"],
+    "imageExampleId4": [5.6, "Animation"],
+};
+
+
 // Takes the file and reads data as a URL.
 function dataUrlFromFile(file) {
     return new Promise((resolve, reject) => {
@@ -60,34 +70,51 @@ function predictRatingClassification(dataUrl, endpoint) {
 
 
 // Populates the IMDb rating div.
-function populateIMDbRating(prediction) {
+function populateIMDbRating(prediction, actualId = 0) {
     const predictRating = prediction.data[0];
     const predictString = "⭐ " + predictRating + "<small class='text-secondary'>/10</small>"
     document.getElementById("predictRating").innerHTML = predictString;
 
+    // Remove old user data if applicable.
+    if (histogramDataset.length == 2) {
+        histogramDataset.pop();
+    } else if (histogramDataset.length == 3) {
+        histogramDataset.pop();
+        histogramDataset.pop();
+    }
+
     // Update histogram graph with user selected prediction.
     let userRatingData = {
-        label: "Your Movie Rating",
-        data: [{ x: parseFloat(predictRating), y: 1 }],
+        label: "Predicted IMDb Rating",
+        data: [{ x: parseFloat(predictRating), y: parseFloat(predictRating) }],
         backgroundColor: "#F5C518",
         type: "line",
         pointRadius: 10,
         pointHoverRadius: 10
     };
+    histogramDataset.push(userRatingData);
 
-    // Remove old user data if applicable.
-    if (histogramDataset.length >= 2) {
-        histogramDataset.pop();
-    }
+    // Update histogram with actual selected rating.
+    if (actualId != 0) {
+        const actualRating = imageExampleIdActRatingsGenres[actualId][0]
+        let actualRatingData = {
+            label: "Actual IMDb Rating",
+            data: [{ x: parseFloat(actualRating), y: parseFloat(actualRating) }],
+            backgroundColor: "#C518F5",
+            type: "line",
+            pointRadius: 12,
+            pointHoverRadius: 12
+        }
+        histogramDataset.push(actualRatingData);
+    };
 
     // Refresh the new histogram.
-    histogramDataset.push(userRatingData);
     histogramRatingChart.update();
 };
 
 
 // Populates the predicted movie poster genres.
-function populateGenres(prediction) {
+function populateGenres(prediction, actualId = 0) {
     const pd = prediction.data[0];
     let concatGenreLabelConfidence = "";
     for (i = 0; i <= 2; i++) {
@@ -103,6 +130,14 @@ function populateGenres(prediction) {
         }
     };
     document.getElementById("genreConfidenceId").innerHTML = concatGenreLabelConfidence;
+
+    // Remove old user data if applicable.
+    if (horizontalBarGenreDataset.length == 2) {
+        horizontalBarGenreDataset.pop();
+    } else if (horizontalBarGenreDataset.length == 3) {
+        horizontalBarGenreDataset.pop();
+        horizontalBarGenreDataset.pop();
+    }
 
     // Update horizontal bar graph with user selected genre prediction.
     const firstGenreLabel = pd.confidences[0].label;
@@ -121,14 +156,31 @@ function populateGenres(prediction) {
         pointRadius: 10,
         pointHoverRadius: 10
     };
+    horizontalBarGenreDataset.push(userGenreData);
 
-    // Remove old user data if applicable.
-    if (horizontalBarGenreDataset.length >= 2) {
-        horizontalBarGenreDataset.pop();
-    }
+    // Update horizontoal bar graph with actual genre.
+    // Update histogram with actual selected rating.
+    if (actualId != 0) {
+        const actualGenre = imageExampleIdActRatingsGenres[actualId][1]
+        let actualGenreArray = Array(genreLabels.length).fill(null);
+        let genreLabelIndex = genreLabels.indexOf(actualGenre);
+        if (genreLabelIndex == -1) {
+            actualGenreArray[8] = 1;
+        } else {
+            actualGenreArray[genreLabelIndex] = 1;
+        }
+        let actualGenreData = {
+            label: "Actual Movie Genre",
+            data: actualGenreArray,
+            backgroundColor: "#C518F5",
+            type: "line",
+            pointRadius: 12,
+            pointHoverRadius: 12
+        }
+        horizontalBarGenreDataset.push(actualGenreData);
+    };
 
     // Refresh the new histogram.
-    horizontalBarGenreDataset.push(userGenreData);
     horizontalBarGenreChart.update();
 
     // Display output IMDb rating and genres prediction row..
@@ -170,10 +222,10 @@ for (let i = 1; i < selectElements.length; i++) {
         document.getElementById("statusDisplay").innerText = "Processing image..."
         const dataUrl = imageExampleIdImgs[posterId];
         predictRatingClassification(dataUrl, regressionEndpoint).then((prediction) => {
-            populateIMDbRating(prediction);
+            populateIMDbRating(prediction, posterId);
         });
         predictRatingClassification(dataUrl, classificationEndpoint).then((prediction) => {
-            populateGenres(prediction);
+            populateGenres(prediction, posterId);
         });
     })
 };
@@ -252,7 +304,7 @@ let histogramRatingChart = new Chart(ratingCtx, {
 
 // Graphs - Horiztonal bar chart of genres.
 const genreLabels = ["Drama", "Comedy", "Action", "Documentary", "Crime",
-    "Horror", "Adventure", "Animation", "Other", "Biography", "Short"];
+    "Horror", "Adventure", "Animation", "Other*", "Biography", "Short"];
 const genreCtx = document.getElementById("horizontalGenreChart").getContext("2d");
 let horizontalBarGenreDataset = [
     {
