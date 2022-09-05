@@ -209,7 +209,7 @@
 				size. For our genre classification algorthim, the model had an error rate of 47% which is
 				not very accurate. This can be attributed to some movies which cover several genres such as Drama /
 				Action and the 26 number of possible genre classifications. In contrast, a naïve algorithm such as
-				always predicting “Drama” would yield a 75% error rate. For future iterations I would 
+				always predicting “Drama” would yield a 75% error rate. For future iterations I would
 				like to deep dive into improving the accuracy and / or use a multi-classification model to
 				better represent the actual data.
 			</p>
@@ -280,9 +280,11 @@
 			<div class="col-md-12">
 				<p>
 					To address the above three issues, I decided to group the colors into a primary parent color, which
-					would reduce the number of unique colors down from 10M to approximately 700. I converted each 
-					RGB coordinate with its <a href="https://en.wikipedia.org/wiki/CIELAB_color_space">CIELAB color space</a> 
-					coordinate to find the closest primary parent color. The CIELAB coordinate is designed to approximate human
+					would reduce the number of unique colors down from 10M to approximately 700. I converted each
+					RGB coordinate with its <a href="https://en.wikipedia.org/wiki/CIELAB_color_space">CIELAB color
+						space</a>
+					coordinate to find the closest primary parent color. The CIELAB coordinate is designed to
+					approximate human
 					vision. The three coordinates are: L* = Lightness (0 is dark and 1 is light),
 					A* = Red-Green value and B* = yellow-blue value. Colors which have CIELAB coordinates that
 					are similar to each-other (small Euclidean distance) are similar in color to the human eye.
@@ -607,8 +609,22 @@
 			<div class="col-md-10">
 				<img class="img-thumbnail" src="https://i.imgur.com/5VhNYUr.png">
 			</div>
+			<h4 class="leftYellowBorder mt-5">Can you try and beat my score?</h4>
+			<div class="col-md-12">
+				<p>It appears we cannot simply judge a movie from its poster alone as there is a much
+					larger signal coming from the movie's audio and visual, the dialogue, actors, the social
+					media buzz, among other dimensions not included in our analysis. What is interesting is that there
+					are signals within the poster which we can use to identify genres based on past poster
+					designs, and we have been able to confirm some long-term trends in the posters which others
+					have written about independently. For future iterations I would like to explore
+					improving the accuracy of the machine learning algorithms and explore other dimensions
+					such as number of votes, social media feeds, or trailers. Other considerations include
+					different JavaScript libraries such as D3, or Python's DataShader for visualizations of large
+					datasets.
+				</p>
+			</div>
 			<!-- Call to Action: Alright them show me  -->
-			<h4 class="leftYellowBorder mt-5">Call to Action: Can you try and beat my score?</h4>
+			<h4 class="leftYellowBorder mt-5">Can you try and beat my score?</h4>
 			<div class="col-md-12">
 				<p class="lead">
 					I challenge you to create a movie poster and try to beat my score!
