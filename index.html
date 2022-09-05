@@ -282,11 +282,11 @@
 					would reduce the number of unique colors down from 10M to approximately 700. I converted each
 					RGB coordinate with its <a href="https://en.wikipedia.org/wiki/CIELAB_color_space">CIELAB color
 						space</a>
-					coordinate to find the closest primary parent color. The CIELAB coordinate is designed to
+					equivalent to find the closest primary parent color. The CIELAB coordinate is designed to
 					approximate human
-					vision. The three coordinates are: L* = Lightness (0 is dark and 1 is light),
-					A* = Red-Green value and B* = yellow-blue value. Colors which have CIELAB coordinates that
-					are similar to each-other (small Euclidean distance) are similar in color to the human eye.
+					vision. The three coordinates are: L* = lightness (0 is dark and 1 is light),
+					A* = red-green value and B* = yellow-blue value. Colors which have CIELAB coordinates that
+					are similar to eachother (small Euclidean distance) are similar in color to the human eye.
 					For example, a pixel <span style="color:#5680e0">&#9632;</span>
 					with a blue CIELAB color space of (54, 8, -54) would aggregate to a blue parent color #006de0 <span
 						style="color:#006de0">&#9632;</span> with a parent CIELAB color of (46, 9, -67). In contrast,
