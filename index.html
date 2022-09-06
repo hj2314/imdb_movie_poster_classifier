@@ -172,8 +172,10 @@
 						dataset of 39.2K movie posters</a> found on <a href="https://www.kaggle.com/">Kaggle</a> and
 					from
 					the <a href="https://www.imdb.com/interfaces/">IMDb datasets</a> website.
-					The movies date back from 1874 to the present day (2022), IMDb ratings are on a scale of one to ten, and span
-					across 26 different genres. In our original dataset, 73.2% of the movies had several genres (example:
+					The movies date back from 1874 to the present day (2022), IMDb ratings are on a scale of one to ten,
+					and span
+					across 26 different genres. In our original dataset, 73.2% of the movies had several genres
+					(example:
 					Action | Comedy). I cleaned the data so there was only one genre associated with each movie to
 					simplify the classification problem.
 				</p>
@@ -201,10 +203,12 @@
 				0.79. This outperforms naïve models such as median, mean, and mode, which achieve an MAE of 0.88, 0.89,
 				and 1.02 respectively. When we sample some predicted scores in our test set, we can see that the
 				algorithm has some predictive qualities in assessing movie quality (or IMDb rating).
-				<span class="fw-bold">Figure 1</span> shows a sample of six movie poster with a predicted score of two or below. Who can forget
-				timeless classics like "3 Little Ninjas", "Bigfoot Terror", and "Age of Ice"! <span class="fw-bold">Figure 2</span> shows a sample
+				<span class="fw-bold">Figure 1</span> shows a sample of six movie poster with a predicted score of two
+				or below. Who can forget
+				timeless classics like "3 Little Ninjas", "Bigfoot Terror", and "Age of Ice"! <span
+					class="fw-bold">Figure 2</span> shows a sample
 				of six movie posters with a predicted rating greater than 7.9. There seems to be some signal
-				which indicates what a "bad" poster vs a "good" poster is from this small sample size of twelve movies. 
+				which indicates what a "bad" poster vs a "good" poster is from this small sample size of twelve movies.
 				For our genre classification algorthim, the model had an error rate of 47% which is
 				not very accurate. This can be attributed to some movies which cover several genres such as Drama |
 				Action and the 26 possible genre classifications. In contrast, a naïve algorithm such as
@@ -216,7 +220,7 @@
 				<figure class="figure">
 					<a href="https://imgur.com/5QJBj8E">
 						<img class="img-thumbnail maxHeightGif" src="https://i.imgur.com/5QJBj8E.gif"></a>
-					<figcaption class="figure-caption text-center">Figure 1: Six movie posters with a low predicted
+					<figcaption class="figure-caption">Figure 1: Six movie posters with a low predicted
 						IMDb rating (less than two). The three numbers below the posters represent predicted score /
 						actual score / and absolute error.</figcaption>
 				</figure>
@@ -225,7 +229,7 @@
 				<figure class="figure">
 					<a href="https://imgur.com/ntXCwU0">
 						<img class="img-thumbnail maxHeightGif" src="https://i.imgur.com/ntXCwU0.jpg"></a>
-					<figcaption class="figure-caption text-center">Figure 2: Six movie posters with a high predicted
+					<figcaption class="figure-caption">Figure 2: Six movie posters with a high predicted
 						IMDb rating (greater than 7.9). The three numbers below the posters represent predicted score
 						/ actual score / and absolute error.</figcaption>
 				</figure>
@@ -247,9 +251,9 @@
 					a color distribution spectrum across several dimensions. I used Python and the
 					<a href="https://pillow.readthedocs.io/en/stable/">PIL library</a> to open
 					each poster, count each pixel color and convert the pixel to a Red, Green, Blue
-					color coordinate (0-255, 0-255, 0-255). RGB with coordinates (0, 0, 0) would 
+					color coordinate (0-255, 0-255, 0-255). RGB with coordinates (0, 0, 0) would
 					be black and (255, 255, 255) would be white.
-					This gives us 256<sup>3</sup> color combinations or 16.7M colors. 
+					This gives us 256<sup>3</sup> color combinations or 16.7M colors.
 					After scanning the pixels of all 39.K posters we have 10.7M unique colors.
 			</div>
 			<div class="col-md-1">
@@ -265,14 +269,15 @@
 					<br>2. Some colors only appear once out of 10M unique colors which would be challenging to visualize
 					in a graphic.
 					<br>3. We cannot sort nor aggregate colors based on their RGB coordinates. RGB coordinates
-					that are close together will not necessarily result in a smooth color gradient as seen in <span class="fw-bold">Figure 3</span>.
+					that are close together will not necessarily result in a smooth color gradient as seen in <span
+						class="fw-bold">Figure 3</span>.
 				</p>
 			</div>
 			<div class="col-md-4">
 				<figure class="figure">
 					<a href="https://imgur.com/2MfXRaG"><img class="img-thumbnail maxHeightPixel"
 							src="https://i.imgur.com/2MfXRaG.png"></a>
-					<figcaption class="figure-caption text-center">Figure 3: Color spectrum based on descending ordered
+					<figcaption class="figure-caption">Figure 3: Color spectrum based on descending ordered
 						RGB coordinates. Source: See Reference <sup>A</sup>.
 					</figcaption>
 				</figure>
@@ -293,13 +298,15 @@
 						style="color:#006de0">&#9632;</span> with a parent CIELAB color of (46, 9, -67). In contrast,
 					their RGB values are (81, 127, 222) and (0, 109, 224) respectively. I used the <a
 						href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.KDTree.html">SciPy
-						KDTree algorithm</a> to identify for each of the 10M color coordinate, which was the closest parent
+						KDTree algorithm</a> to identify for each of the 10M color coordinate, which was the closest
+					parent
 					CIELAB coordinate (~700 colors). The KDTree algorthim used is described by Maneewongvatana and Mount
 					1999 <Sup>B</Sup>. By reducing and aggregating the unique color combinations we
 					can address the first two issues. I used the <a href="https://pypi.org/project/colour/">Colour</a>
 					library in Python to identify the order of colors which would approximate an aesthetically pleasing
-					color gradient which can be seen in <span class="fw-bold">Figure 4</span> below, where the ~700 colors now smoothly transition
-					from black to white to the other colors of the rainbow. We can see that 75.5% of all the colors used
+					color gradient which can be seen in <span class="fw-bold">Figure 4</span> below, where the ~700
+					colors now smoothly transition
+					from black to white to the full colors of the rainbow. We can see that 75.5% of all the colors used
 					span the black and white spectrum. We can now examine over 39.K movies in a single visualization
 					over several dimensions such as time (decade), genre, and rating.
 				</p>
@@ -308,10 +315,9 @@
 				<p class="lead">Color Spectrum of All Movies from 1874-2022</p>
 				<figure class="figure">
 					<img class="img-thumbnail maxHeightSpectrum" src="https://i.imgur.com/MRP0HOx.jpg">
-					<figcaption class="figure-caption text-center">Figure 4: This is a reduced (16.7M to ~700) color
+					<figcaption class="figure-caption">Figure 4: This is a reduced (16.7M to ~700) color
 						spectrum of all the pixels found in the 39.2K movie posters spanning nearly the
-						last 150 years.
-						<br>75.5% of the colors used span the black and white spectrum.
+						last 150 years. 75.5% of the colors used span the black and white spectrum.
 					</figcaption>
 				</figure>
 			</div>
@@ -321,9 +327,9 @@
 				<p class="lead">Color Spectrum of Movies by Decade</p>
 				<figure class="figure">
 					<img class="img-thumbnail maxHeightSpectrum" src="https://i.imgur.com/UN0BEak.jpg">
-					<figcaption class="figure-caption text-center">Figure 5: This is a color spectrum of all the pixels
+					<figcaption class="figure-caption">Figure 5: This is a color spectrum of all the pixels
 						across 39.2K movie poster by decade. We can see four distinct eras:
-						<br> 1880-1900 Monochrome black and white, 1910-1950 The dawn of color,
+						1880-1900 Monochrome black and white, 1910-1950 The dawn of color,
 						1970-2010 Trending to darkness, 1990-2010 Orange and blue contrasts.
 					</figcaption>
 				</figure>
@@ -359,7 +365,7 @@
 				<figure class="figure">
 					<a href="https://imgur.com/xUMZqBV"><img class="img-thumbnail maxHeightSpectrum"
 							src="https://i.imgur.com/xUMZqBV.png"></a>
-					<figcaption class="figure-caption text-center">Figure 6: 1880-1900 Black and white.
+					<figcaption class="figure-caption">Figure 6: 1880-1900 Black and white.
 					</figcaption>
 				</figure>
 			</div>
@@ -367,7 +373,8 @@
 				<p><span class="fst-italic">1910-1950, The Dawn of Color:</span> The invention of the four-color
 					wet process, known as CMYK (Cyan, Magenta, Yellow, and Key (black)) printing gave way for
 					producers to create posters with a nearly unlimited color palette at low costs. We can see
-					this in our <span class="fw-bold">Figure 5</span> color spectrum starting from 1910. This timeline also corresponds with
+					this in our <span class="fw-bold">Figure 5</span> color spectrum starting from 1910. This timeline
+					also corresponds with
 					when the <a href="https://cmykhistory.com/thomas-a-lenci-and-the-eagle-printing-ink-company/">Eagle
 						Printing Ink company first introduced this technique to print colors back in
 						1906.</a> <sup>C</sup>
@@ -377,7 +384,7 @@
 				<figure class="figure">
 					<a href="https://imgur.com/VB5qsdq"><img class="img-thumbnail maxHeightSpectrum"
 							src="https://i.imgur.com/VB5qsdq.png"></a>
-					<figcaption class="figure-caption text-center">Figure 7: 1910-1950 The Dawn of Color.
+					<figcaption class="figure-caption">Figure 7: 1910-1950 The Dawn of Color.
 					</figcaption>
 				</figure>
 			</div>
@@ -400,7 +407,7 @@
 				<figure class="figure">
 					<a href="https://imgur.com/RbJEbgr"><img class="img-thumbnail maxHeightSpectrum"
 							src="https://i.imgur.com/RbJEbgr.png"></a>
-					<figcaption class="figure-caption text-center">Figure 8: 1970-2010 Trending towards Darkness.
+					<figcaption class="figure-caption">Figure 8: 1970-2010 Trending towards Darkness.
 					</figcaption>
 				</figure>
 			</div>
@@ -434,7 +441,7 @@
 				<figure class="figure">
 					<a href="https://imgur.com/KQBEYr5"><img class="img-thumbnail maxHeightSpectrum"
 							src="https://i.imgur.com/KQBEYr5.png"></a>
-					<figcaption class="figure-caption text-center">Figure 9: 1990-2010 Orange and Blue.
+					<figcaption class="figure-caption">Figure 9: 1990-2010 Orange and Blue.
 					</figcaption>
 				</figure>
 			</div>
@@ -475,7 +482,7 @@
 				<p class="lead">Color Spectrum of Movies by Genre</p>
 				<figure class="figure">
 					<img class="img-thumbnail maxHeightSpectrum" src="https://i.imgur.com/JjJ096w.png">
-					<figcaption class="figure-caption text-center">Figure 10: Color Spectrum of Movies by Genre.
+					<figcaption class="figure-caption">Figure 10: Color Spectrum of Movies by Genre.
 					</figcaption>
 				</figure>
 			</div>
@@ -527,7 +534,7 @@
 				<p class="lead">Color Spectrum of Movies by Rating</p>
 				<figure class="figure">
 					<img class="img-thumbnail maxHeightSpectrum" src="https://i.imgur.com/O84KTuu.png">
-					<figcaption class="figure-caption text-center">Figure 11: Color Spectrum of Movies by Rating.
+					<figcaption class="figure-caption">Figure 11: Color Spectrum of Movies by Rating.
 					</figcaption>
 				</figure>
 			</div>
