@@ -244,6 +244,8 @@ let histogramDataset = [
         barPercentage: 1,
         categoryPercentage: 1,
         borderRadius: 5,
+        backgroundColor: 'rgba(128, 128, 128, 0.5)',
+        borderColor: 'rgba(128, 128, 128, 1)'
     }
 ];
 let histogramRatingChart = new Chart(ratingCtx, {
@@ -312,7 +314,9 @@ let horizontalBarGenreDataset = [
         data: [9902, 9733, 4739, 3843, 2556, 1975, 1684, 1665, 1479, 1226, 457],
         fill: false,
         borderWidth: 1,
-        axis: "y"
+        axis: "y",
+        backgroundColor: 'rgba(128, 128, 128, 0.5)',
+        borderColor: 'rgba(128, 128, 128, 1)'        
     }
 ];
 let horizontalBarGenreChart = new Chart(genreCtx, {
@@ -360,7 +364,10 @@ let avgLineRatingChart = new Chart(avgLineRatingCtx, {
             {
                 label: "Average IMDb Rating by Decade",
                 data: [5.90, 5.72, 6.55, 6.67, 7.17, 6.87, 6.92
-                    , 6.77, 6.71, 6.51, 6.33, 6.32, 6.35, 6.24]
+                    , 6.77, 6.71, 6.51, 6.33, 6.32, 6.35, 6.24],
+                backgroundColor: 'rgba(128, 128, 128, 0.5)',
+                borderColor: 'rgba(128, 128, 128, 1)',
+                borderWidth: 1                
             }
         ]
     }, options: {
@@ -394,7 +401,10 @@ let avgGenreBarChart = new Chart(avgGenreCtx, {
             {
                 label: "Average IMDb Rating by Genre",
                 data: [4.89, 5.72, 5.96, 6.08, 6.37, 6.39,
-                    6.40, 6.79, 6.79, 6.79, 6.84, 7.28]
+                       6.40, 6.79, 6.79, 6.79, 6.84, 7.28],
+                backgroundColor: 'rgba(128, 128, 128, 0.5)',
+                borderColor: 'rgba(128, 128, 128, 1)',
+                borderWidth: 1                      
             }
         ]
     }, options: {
