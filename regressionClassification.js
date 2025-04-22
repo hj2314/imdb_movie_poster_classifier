@@ -1,8 +1,8 @@
 // Init regression and classification Gradio API endpoints. 
 // const regressionEndpoint = "https://hf.space/embed/hh871/movieScoreRegression/+/api/predict"
 // const classificationEndpoint = "https://hf.space/embed/hh871/movieGenreClassifier/+/api/predict"
-const regressionEndpoint = "https://cors-proxy.htmldriven.com/?url=" + encodeURIComponent("https://huggingface.co/spaces/hh871/movieScoreRegression/+/api/predict")
-const classificationEndpoint = "https://cors-proxy.htmldriven.com/?url=" + encodeURIComponent("https://huggingface.co/spaces/hh871/movieGenreClassifier/+/api/predict")
+const regressionEndpoint = "https://hh871-moviegenreclassifier.hf.space/gradio_api/call/predict"
+const classificationEndpoint = "https://hh871-moviegenreclassifier.hf.space/gradio_api/call/predict"
 
 
 // Init example posterId to base64 image.
