@@ -62,21 +62,51 @@ function predictRatingClassification(dataUrl, endpoint) {
     const jsonDataString = JSON.stringify(jsonData);
     const headers = new Headers();
     headers.append("Content-Type", "application/json");
+    
     const request = new Request(endpoint, {
         method: "POST",
         headers: headers,
         body: jsonDataString
     });
-    return fetch(request).then(response => response.json());
-};
+    
+    return fetch(request)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('API Response:', data); // Debug log
+            return data;
+        })
+        .catch(error => {
+            console.error('API Error:', error);
+            throw error;
+        });
+}
 
 
 // Populates the IMDb rating div.
 function populateIMDbRating(prediction, actualId = 0) {
-    const predictRating = prediction.data[0];
+    console.log('Rating prediction:', prediction); // Debug log
+
+    // Handle different possible response formats
+    let predictRating;
+    if (prediction.data && prediction.data[0]) {
+        predictRating = prediction.data[0];
+    } else if (prediction[0]) {
+        predictRating = prediction[0];
+    } else if (typeof prediction === 'number') {
+        predictRating = prediction;
+    } else {
+        console.error('Unexpected prediction format:', prediction);
+        return;
+    }
+
     const predictString = "⭐ " + predictRating + "<small class='text-secondary'>/10</small>"
     document.getElementById("predictRating").innerHTML = predictString;
-
+    
     // Remove old user data if applicable.
     if (histogramDataset.length == 2) {
         histogramDataset.pop();
@@ -117,6 +147,24 @@ function populateIMDbRating(prediction, actualId = 0) {
 
 // Populates the predicted movie poster genres.
 function populateGenres(prediction, actualId = 0) {
+    console.log('Genre prediction:', prediction); // Debug log
+
+    // Handle different possible response formats
+    let pd;
+    if (prediction.data && prediction.data[0]) {
+        pd = prediction.data[0];
+    } else if (prediction[0]) {
+        pd = prediction[0];
+    } else {
+        pd = prediction;
+    }
+    
+    // Check if confidences exist
+    if (!pd.confidences) {
+        console.error('No confidences in prediction:', pd);
+        return;
+    }
+    
     const pd = prediction.data[0];
     let concatGenreLabelConfidence = "";
     for (i = 0; i <= 2; i++) {
