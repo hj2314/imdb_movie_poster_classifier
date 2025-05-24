@@ -1,7 +1,7 @@
 // Init regression and classification Gradio API endpoints. 
 // const regressionEndpoint = "https://hf.space/embed/hh871/movieScoreRegression/+/api/predict"
 // const classificationEndpoint = "https://hf.space/embed/hh871/movieGenreClassifier/+/api/predict"
-const regressionEndpoint = "https://hh871-moviegenreclassifier.hf.space/gradio_api/run/predict"
+const regressionEndpoint = "https://hh871-movieScoreRegression.hf.space/gradio_api/run/predict"
 const classificationEndpoint = "https://hh871-moviegenreclassifier.hf.space/gradio_api/run/predict"
 
 
