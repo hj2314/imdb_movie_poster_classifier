@@ -148,8 +148,8 @@ function populateIMDbRating(prediction, actualId = 0) {
 // Populates the predicted movie poster genres.
 function populateGenres(prediction, actualId = 0) {
     console.log('Genre prediction:', prediction); // Debug log
-
-    // Handle different possible response formats
+    
+    // Handle different possible response formats - declare pd only once
     let pd;
     if (prediction.data && prediction.data[0]) {
         pd = prediction.data[0];
@@ -160,14 +160,13 @@ function populateGenres(prediction, actualId = 0) {
     }
     
     // Check if confidences exist
-    if (!pd.confidences) {
+    if (!pd || !pd.confidences) {
         console.error('No confidences in prediction:', pd);
         return;
     }
     
-    const pd = prediction.data[0];
     let concatGenreLabelConfidence = "";
-    for (i = 0; i <= 2; i++) {
+    for (let i = 0; i <= 2; i++) { // Use 'let i' instead of just 'i'
         const genreLabel = pd.confidences[i].label;
         const confidencePercent = "<small class='text-secondary'> ("
             + Math.floor(pd.confidences[i]['confidence'] * 100) + "%)</small>"
@@ -178,7 +177,7 @@ function populateGenres(prediction, actualId = 0) {
             concatGenreLabelConfidence = concatGenreLabelConfidence
                 + genreLabel + confidencePercent + " • "
         }
-    };
+    }
     document.getElementById("genreConfidenceId").innerHTML = concatGenreLabelConfidence;
 
     // Remove old user data if applicable.
@@ -208,16 +207,15 @@ function populateGenres(prediction, actualId = 0) {
     };
     horizontalBarGenreDataset.push(userGenreData);
 
-    // Update horizontoal bar graph with actual genre.
-    // Update histogram with actual selected rating.
+    // Update horizontal bar graph with actual genre.
     if (actualId != 0) {
         const actualGenre = imageExampleIdActRatingsGenres[actualId][1]
         let actualGenreArray = Array(genreLabels.length).fill(null);
-        let genreLabelIndex = genreLabels.indexOf(actualGenre);
-        if (genreLabelIndex == -1) {
+        let actualGenreLabelIndex = genreLabels.indexOf(actualGenre); // Use different variable name
+        if (actualGenreLabelIndex == -1) {
             actualGenreArray[8] = 1;
         } else {
-            actualGenreArray[genreLabelIndex] = 1;
+            actualGenreArray[actualGenreLabelIndex] = 1;
         }
         let actualGenreData = {
             label: "Actual Movie Genre",
@@ -228,7 +226,7 @@ function populateGenres(prediction, actualId = 0) {
             pointHoverRadius: 12
         }
         horizontalBarGenreDataset.push(actualGenreData);
-    };
+    }
 
     // Refresh the new histogram.
     horizontalBarGenreChart.update();
@@ -236,8 +234,7 @@ function populateGenres(prediction, actualId = 0) {
     // Display output IMDb rating and genres prediction row..
     const statusDisplayText = "↑ Click here to upload a movie poster."
     document.getElementById("statusDisplay").innerText = statusDisplayText;
-};
-
+}
 
 // Upload movie poster main.
 const selectElement = document.getElementById("chooseFileImageId");
