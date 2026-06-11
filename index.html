@@ -95,7 +95,7 @@
 			<h4 class="mt-5">Can you judge a movie by its poster?</h4>
 			<div class="row">
 				<p>Upload an image of a movie poster or click on one of the examples to see if a deep learning algorithm
-					can predict it's IMDb Rating and Genre.
+					can predict its IMDb Rating and Genre.
 					<br>Where does your selected movie stand against the 39.2K sampled IMDb movies?
 				</p>
 
@@ -241,7 +241,7 @@
 					class="fw-bold">Figure 2</span> shows a sample
 				of six movie posters with a predicted rating greater than 7.9. There seems to be some signal
 				which indicates what a "bad" poster vs a "good" poster is from this small sample size of twelve movies.
-				For our genre classification algorthim, the model had an error rate of 47% which is
+				For our genre classification algorithm, the model had an error rate of 47% which is
 				not very accurate. This can be attributed to some movies which cover several genres such as Drama |
 				Action and the 26 possible genre classifications. In contrast, a naïve algorithm such as
 				always predicting “Drama” would yield a 75% error rate. For future iterations I would
@@ -286,7 +286,8 @@
 					color coordinate (0-255, 0-255, 0-255). RGB with coordinates (0, 0, 0) would
 					be black and (255, 255, 255) would be white.
 					This gives us 256<sup>3</sup> color combinations or 16.7M colors.
-					After scanning the pixels of all 39.K posters we have 10.7M unique colors.
+					After scanning the pixels of all 39.2K posters we have 10.7M unique colors.
+				</p>
 			</div>
 			<div class="col-md-1">
 				<figure class="figure">
@@ -324,7 +325,7 @@
 					approximate human
 					vision. The three coordinates are: L* = lightness (0 is dark and 1 is light),
 					A* = red-green value and B* = yellow-blue value. Colors which have CIELAB coordinates that
-					are similar to eachother (small Euclidean distance) are similar in color to the human eye.
+					are similar to each other (small Euclidean distance) are similar in color to the human eye.
 					For example, a pixel <span style="color:#5680e0">&#9632;</span>
 					with a blue CIELAB color space of (54, 8, -54) would aggregate to a blue parent color #006de0 <span
 						style="color:#006de0">&#9632;</span> with a parent CIELAB color of (46, 9, -67). In contrast,
@@ -332,14 +333,14 @@
 						href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.KDTree.html">SciPy
 						KDTree algorithm</a> to identify for each of the 10M color coordinate, which was the closest
 					parent
-					CIELAB coordinate (~700 colors). The KDTree algorthim used is described by Maneewongvatana and Mount
+					CIELAB coordinate (~700 colors). The KDTree algorithm used is described by Maneewongvatana and Mount
 					1999 <Sup>B</Sup>. By reducing and aggregating the unique color combinations we
 					can address the first two issues. I used the <a href="https://pypi.org/project/colour/">Colour</a>
 					library in Python to identify the order of colors which would approximate an aesthetically pleasing
 					color gradient which can be seen in <span class="fw-bold">Figure 4</span> below, where the ~700
 					colors now smoothly transition
 					from black to white to the full colors of the rainbow. We can see that 75.5% of all the colors used
-					span the black and white spectrum. We can now examine over 39.K movies in a single visualization
+					span the black and white spectrum. We can now examine over 39.2K movies in a single visualization
 					over several dimensions such as time (decade), genre, and rating.
 				</p>
 			</div>
@@ -374,8 +375,7 @@
 				</p>
 			</div>
 			<div class="col-md-8">
-				<figure class="figure">
-					<p><span class="fst-italic">1880-1900, Monochrome Black and White:</span> This was the
+				<p><span class="fst-italic">1880-1900, Monochrome Black and White:</span> This was the
 						emergence
 						of the movie industry where directors experimented with early motion picture technologies.
 						The technology was limited to black and white <a href="https://imgur.com/8xSEmph">(or was it?
@@ -425,7 +425,8 @@
 				<p><span class="fst-italic">1970-2010, Trending Towards Darkness:</span> We can see a trend towards
 					darker movie posters during the last few decades. In 1910, the darker palettes occupied only 28.3%
 					of the total color spectrum while in 2010 the darker palettes occupied 58.2%.
-				<p class="class="fst-italic"><small>'Some movie theorists believe this is related to the popularity of
+				</p>
+				<p class="fst-italic"><small>'Some movie theorists believe this is related to the popularity of
 						action, thrillers, and sci-fi of the past decade may have led to a darker and more
 						"masculine" palette.'</small></p>
 				<figcaption class="blockquote-footer">
@@ -433,7 +434,6 @@
 						href="https://www.yahoo.com/entertainment/news/why-movie-posters-look-same-193551420.html"><cite>
 							Why Movie Posters All Look the Same</cite></a> <sup>D</sup>
 				</figcaption>
-				</p>
 			</div>
 			<div class="col-md-3">
 				<figure class="figure">
@@ -450,8 +450,9 @@
 					in many <a href="https://www.youtube.com/watch?v=NXrIMXNh1qs">videos</a> and <a
 						href="https://www.obsev.com/entertainment/orange-and-blue-movie-posters/">articles</a>.
 					The articles discuss how blue and orange are on opposite sides of the color wheel which makes them
-					complimentary colors, causing them to pop in the poster image.
-				<p class="class="fst-italic"><small>'There's a very simple answer for why there's always so much orange and blue in
+					complementary colors, causing them to pop in the poster image.
+				</p>
+				<p class="fst-italic"><small>'There's a very simple answer for why there's always so much orange and blue in
 						movies, and it all starts with skin tone. Human skin tones generally fall somewhere in
 						the orange spectrum.'<br></small></p>
 				<figcaption class="blockquote-footer">
@@ -459,7 +460,6 @@
 						href="https://www.atomcreativemedia.com/blog/entertainment/why-do-we-see-so-much-orange-and-blue-in-movies/"><cite>
 							Why do we see so much orange and blue in movies</cite></a> <sup>E</sup>
 				</figcaption>
-				</p>
 			</div>
 			<div class="col-md-1">
 				<figure class="figure">
@@ -502,7 +502,7 @@
 					<br>1. We can consider adopting a 1920s color theme to maximize our IMDb rating to rekindle
 					the novelty factor as this was the era that had the highest average IMDb rating.
 					<br>2. We can avoid following the trend to dark colors >58.2% and the use of orange and blue colors
-					>12.2%, as these trends correlate with decreasing IMDB ratings.
+					>12.2%, as these trends correlate with decreasing IMDb ratings.
 				</p>
 			</div>
 			<div class="col-md-6">

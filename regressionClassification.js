@@ -3,6 +3,7 @@ import { Client } from "https://cdn.jsdelivr.net/npm/@gradio/client/dist/index.m
 
 let regressionClient = null;
 let classificationClient = null;
+let clientsReady = null;
 
 // Initialize clients
 async function initializeClients() {
@@ -15,8 +16,8 @@ async function initializeClients() {
     }
 }
 
-// Initialize clients when the page loads
-initializeClients();
+// Initialize clients when the page loads, and let predictions await readiness.
+clientsReady = initializeClients();
 
 // Init actual ratings genres of image example posters.
 const imageExampleIdActRatingsGenres = {
@@ -27,10 +28,22 @@ const imageExampleIdActRatingsGenres = {
     "imageExampleId4": [5.6, "Animation"],
 };
 
-// Convert data URL to Blob
-function dataUrlToBlob(dataUrl) {
+// Convert an uploaded data URL or image URL to a Blob for Gradio.
+async function imageInputToBlob(imageInput) {
+    if (imageInput instanceof Blob) {
+        return imageInput;
+    }
+
+    if (typeof imageInput === "string" && !imageInput.startsWith("data:")) {
+        const response = await fetch(imageInput);
+        if (!response.ok) {
+            throw new Error(`Failed to fetch image: ${response.status}`);
+        }
+        return response.blob();
+    }
+
     return new Promise((resolve) => {
-        const arr = dataUrl.split(',');
+        const arr = imageInput.split(',');
         const mime = arr[0].match(/:(.*?);/)[1];
         const bstr = atob(arr[1]);
         let n = bstr.length;
@@ -71,13 +84,14 @@ function updatePosterBorder(posterId) {
 }
 
 // Predicts movie poster rating using Gradio client
-async function predictRating(dataUrl) {
+async function predictRating(imageInput) {
     try {
+        await clientsReady;
         if (!regressionClient) {
             throw new Error("Regression client not initialized");
         }
         
-        const blob = await dataUrlToBlob(dataUrl);
+        const blob = await imageInputToBlob(imageInput);
         const result = await regressionClient.predict("/predict", {
             img: blob,
         });
@@ -91,13 +105,14 @@ async function predictRating(dataUrl) {
 }
 
 // Predicts movie poster classification using Gradio client
-async function predictClassification(dataUrl) {
+async function predictClassification(imageInput) {
     try {
+        await clientsReady;
         if (!classificationClient) {
             throw new Error("Classification client not initialized");
         }
         
-        const blob = await dataUrlToBlob(dataUrl);
+        const blob = await imageInputToBlob(imageInput);
         const result = await classificationClient.predict("/predict", {
             img: blob,
         });
@@ -286,20 +301,19 @@ selectElement.addEventListener("change", (event) => {
 });
 
 // Example movie poster main.
-const selectElements = document.getElementsByClassName("img-thumbnail poster");
-for (let i = 1; i < selectElements.length; i++) {
-    const selectElement = selectElements[i];
+const selectElements = document.querySelectorAll('[id^="imageExampleId"]');
+for (const selectElement of selectElements) {
     selectElement.addEventListener("click", async (event) => {
         const posterId = event.target.id;
         updatePosterBorder(posterId);
         document.getElementById("statusDisplay").innerText = "Processing image..."
-        const dataUrl = imageExampleIdImgs[posterId];
+        const imageUrl = event.currentTarget.src;
         
         try {
-            const ratingPrediction = await predictRating(dataUrl);
+            const ratingPrediction = await predictRating(imageUrl);
             populateIMDbRating(ratingPrediction, posterId);
             
-            const genrePrediction = await predictClassification(dataUrl);
+            const genrePrediction = await predictClassification(imageUrl);
             populateGenres(genrePrediction, posterId);
         } catch (error) {
             console.error("Prediction error:", error);
