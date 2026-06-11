@@ -333,6 +333,8 @@ let histogramRatingChart = new Chart(ratingCtx, {
         datasets: histogramDataset
     },
     options: {
+        responsive: true,
+        maintainAspectRatio: false,
         scales: {
             x: {
                 type: 'linear',
@@ -369,7 +371,7 @@ let histogramRatingChart = new Chart(ratingCtx, {
                         const min = x - 0.5;
                         const max = x + 0.5;
                         const toolTipLabel = items[0].dataset.label;
-                        if (toolTipLabel == "Your Movie Rating") {
+                        if (toolTipLabel == "Predicted IMDb Rating" || toolTipLabel == "Actual IMDb Rating") {
                             return "IMDb Rating: " + x;
                         } else {
                             return `IMDb Rating: ${min} - ${max}`;
@@ -403,6 +405,8 @@ let horizontalBarGenreChart = new Chart(genreCtx, {
         datasets: horizontalBarGenreDataset
     },
     options: {
+        responsive: true,
+        maintainAspectRatio: false,
         indexAxis: 'y',
         scales: {
             x: {

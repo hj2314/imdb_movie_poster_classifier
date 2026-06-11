@@ -19,6 +19,39 @@
 			cursor: pointer;
 		}
 
+		.poster-option {
+			height: 250px;
+		}
+
+		.poster-option .image-upload,
+		.poster-option .image-upload label {
+			display: block;
+			height: 100%;
+			width: 100%;
+		}
+
+		.poster-option img.poster {
+			display: block;
+			height: 100%;
+			min-height: 100%;
+			object-fit: cover;
+			width: 100%;
+		}
+
+		.chart-panel {
+			height: 320px;
+		}
+
+		@media (max-width: 575.98px) {
+			.poster-option {
+				height: 160px;
+			}
+
+			.chart-panel {
+				height: 260px;
+			}
+		}
+
 		nav.bg-black {
 			background-color: black;
 		}
@@ -51,8 +84,7 @@
 			<!-- Fixed navbar -->
 			<nav class="navbar-fluid navbar-dark bg-dark">
 				<a class="navbar-brand" href="#">
-					<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/IMDB_Logo_2016.svg/320px-IMDB_Logo_2016.svg.png"
-						width="64" height="32" alt="">
+					<img src="./imdblogo.png" width="64" height="32" alt="IMDb">
 				</a>
 			</nav>
 			<h1 class="display-5">Deep Learning with IMDb Movie Ratings and Genres
@@ -68,7 +100,7 @@
 				</p>
 
 				<!-- Image upload div. -->
-				<div class="col-md-2">
+				<div class="col-4 col-sm-2 poster-option">
 					<span class="image-upload">
 						<label for="chooseFileImageId">
 							<img id="imagePreviewId" class="img-thumbnail poster" alt="Upload Poster Image"
@@ -80,20 +112,20 @@
 				</div>
 
 				<!-- Image examples. -->
-				<div class="col-md-2">
-					<img class="img-thumbnail poster" id="imageExampleId0" src="https://i.imgur.com/jhjYIll.jpg">
+				<div class="col-4 col-sm-2 poster-option">
+					<img class="img-thumbnail poster" id="imageExampleId0" src="https://i.imgur.com/jhjYIll.jpg" alt="Example movie poster">
 				</div>
-				<div class="col-md-2">
-					<img class="img-thumbnail poster" id="imageExampleId1" src="https://i.imgur.com/a4lXAkm.jpg">
+				<div class="col-4 col-sm-2 poster-option">
+					<img class="img-thumbnail poster" id="imageExampleId1" src="https://i.imgur.com/a4lXAkm.jpg" alt="Example movie poster">
 				</div>
-				<div class="col-md-2">
-					<img class="img-thumbnail poster" id="imageExampleId2" src="https://i.imgur.com/kaDFQxn.jpg">
+				<div class="col-4 col-sm-2 poster-option">
+					<img class="img-thumbnail poster" id="imageExampleId2" src="https://i.imgur.com/kaDFQxn.jpg" alt="Example movie poster">
 				</div>
-				<div class="col-md-2">
-					<img class="img-thumbnail poster" id="imageExampleId3" src="https://i.imgur.com/C61EAVb.jpg">
+				<div class="col-4 col-sm-2 poster-option">
+					<img class="img-thumbnail poster" id="imageExampleId3" src="https://i.imgur.com/C61EAVb.jpg" alt="Example movie poster">
 				</div>
-				<div class="col-md-2">
-					<img class="img-thumbnail poster" id="imageExampleId4" src="https://i.imgur.com/wKlhbg4.jpg">
+				<div class="col-4 col-sm-2 poster-option">
+					<img class="img-thumbnail poster" id="imageExampleId4" src="https://i.imgur.com/wKlhbg4.jpg" alt="Example movie poster">
 				</div>
 				<div class="col-md-12">
 					<p id="statusDisplay">No movie poster selected.</p>
@@ -120,11 +152,11 @@
 			</div>
 
 			<!-- Histogram and horizontal genre bar charts. -->
-			<div class="col-md-6">
-				<canvas id="histogramRatingChart">
+			<div class="col-md-6 chart-panel">
+				<canvas id="histogramRatingChart"></canvas>
 			</div>
-			<div class="col-md-6">
-				<canvas id="horizontalGenreChart">
+			<div class="col-md-6 chart-panel">
+				<canvas id="horizontalGenreChart"></canvas>
 			</div>
 			<div class="col-md-6">
 				<p>IMDb Rating Descriptive Statistics</p>
@@ -690,7 +722,7 @@
 			</div>
 		</div>
 	</div>
-	<script src="regressionClassification.js">
+	<script type="module" src="regressionClassification.js">
 	</script>
 </body>
 
