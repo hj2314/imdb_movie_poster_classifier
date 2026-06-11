@@ -2,6 +2,9 @@
 
 Can a model guess a movie's rating and genre from its poster alone?
 
+Built in 2023, pre-LLM — ResNet18 transfer learning trained with fast.ai,
+back when this took more than a prompt.
+
 **[Live demo](https://hj2314.github.io/imdb_movie_poster_classifier/)** —
 upload any movie poster, or click one of the examples.
 
